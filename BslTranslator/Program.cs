@@ -28,7 +28,7 @@ namespace Leap
     }
     class SampleListener
     {
-        BslAlphabet alphabet = new BslAlphabet();
+        readonly BslAlphabet alphabet = new BslAlphabet();
         public void OnServiceConnect(object sender, ConnectionEventArgs args)
         {
             Console.WriteLine("Service Connected");

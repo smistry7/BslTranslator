@@ -1,4 +1,6 @@
-﻿namespace Leap
+﻿using System.Linq;
+
+namespace Leap
 {
     internal class BslAlphabet
     {
