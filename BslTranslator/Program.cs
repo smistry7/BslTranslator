@@ -31,7 +31,7 @@ namespace Leap
         readonly BslAlphabet alphabet = new BslAlphabet();
         public void OnServiceConnect(object sender, ConnectionEventArgs args)
         {
-            Console.WriteLine("Service Connected");
+            Console.WriteLine("Service Connected blah blah blah blah");
         }
 
         public void OnConnect(object sender, DeviceEventArgs args)
