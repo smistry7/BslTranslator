@@ -1,0 +1,6 @@
+c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\bin\Debug\BslTranslator.exe
+c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\bin\Debug\BslTranslator.pdb
+c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\bin\Debug\LeapCSharp.NET4.5.dll
+c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\obj\Debug\BslTranslator.csprojResolveAssemblyReference.cache
+c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\obj\Debug\BslTranslator.exe
+c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\obj\Debug\BslTranslator.pdb
