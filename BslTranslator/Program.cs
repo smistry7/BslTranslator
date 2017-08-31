@@ -15,7 +15,7 @@ namespace Leap
             controller.Connect += listener.OnServiceConnect;
             controller.Device += listener.OnConnect;
             controller.FrameReady += listener.OnFrame;
-
+            //here is my change
             // Keep this process running until Enter is pressed
             Console.WriteLine("Press Enter to quit...");
             Console.ReadLine();
