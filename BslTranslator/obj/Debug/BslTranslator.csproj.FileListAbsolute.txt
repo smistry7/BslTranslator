@@ -4,3 +4,31 @@ c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslat
 c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\obj\Debug\BslTranslator.csprojResolveAssemblyReference.cache
 c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\obj\Debug\BslTranslator.exe
 c:\users\mistrys\documents\visual studio 2015\Projects\BslTranslator\BslTranslator\obj\Debug\BslTranslator.pdb
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\BslTranslator.exe
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\BslTranslator.pdb
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\nunit.framework.dll
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\nunit.framework.xml
+C:\Users\shyam\BslTranslator\BslTranslator\obj\Debug\BslTranslator.csprojResolveAssemblyReference.cache
+C:\Users\shyam\BslTranslator\BslTranslator\obj\Debug\BslTranslator.csproj.CoreCompileInputs.cache
+C:\Users\shyam\BslTranslator\BslTranslator\obj\Debug\BslTranslator.exe
+C:\Users\shyam\BslTranslator\BslTranslator\obj\Debug\BslTranslator.pdb
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.Core.dll
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.dll
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.pdb
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.xml
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.Core.pdb
+C:\Users\shyam\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.Core.xml
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\BslTranslator.exe
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\BslTranslator.pdb
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.Core.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\nunit.framework.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.pdb
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.xml
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.Core.pdb
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\FluentAssertions.Core.xml
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\nunit.framework.xml
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Debug\BslTranslator.csprojResolveAssemblyReference.cache
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Debug\BslTranslator.csproj.CoreCompileInputs.cache
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Debug\BslTranslator.exe
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Debug\BslTranslator.pdb
