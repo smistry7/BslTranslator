@@ -178,6 +178,18 @@ namespace Leap
                     Console.WriteLine("X");
                     possibleGestures.Add("X");
                 }
+                LeapFrame.W = alphabet.W(frame.Hands[0], frame.Hands[1]);
+                if (LeapFrame.W)
+                {
+                    Console.WriteLine("W");
+                    possibleGestures.Add("W");
+                }
+                LeapFrame.S = alphabet.S(frame.Hands[0], frame.Hands[1]);
+                if (LeapFrame.S)
+                {
+                    Console.WriteLine("S");
+                    possibleGestures.Add("S");
+                }
                 LeapFrame.Y = alphabet.Y(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.Y)
                 {
@@ -204,6 +216,47 @@ namespace Leap
                 {
                     Console.WriteLine("G"); possibleGestures.Add("G");
                 }
+                if (alphabet.One(frame.Hands[0]))
+                {
+                    Console.WriteLine("1");
+                }
+                if (alphabet.Two(frame.Hands[0]))
+                {
+                    Console.WriteLine("2");
+                }
+                if (alphabet.Three(frame.Hands[0]))
+                {
+                    Console.WriteLine("3");
+                }
+                if (alphabet.Four(frame.Hands[0]))
+                {
+                    Console.WriteLine("4");
+                }
+                if (alphabet.Five(frame.Hands[0]))
+                {
+                    Console.WriteLine("5");
+                }
+                if (alphabet.Six(frame.Hands[0]))
+                {
+                    Console.WriteLine("6");
+                }
+                if (alphabet.Seven(frame.Hands[0]))
+                {
+                    Console.WriteLine("7");
+                }
+                if (alphabet.Eight(frame.Hands[0]))
+                {
+                    Console.WriteLine("8");
+                }
+                if (alphabet.Nine(frame.Hands[0]))
+                {
+                    Console.WriteLine("9");
+                }
+                if (alphabet.Zero(frame.Hands[0]))
+                {
+                    Console.WriteLine("0");
+                }
+
 
             }
 

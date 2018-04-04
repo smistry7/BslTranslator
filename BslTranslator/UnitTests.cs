@@ -9,12 +9,16 @@ using FluentAssertions;
 using LeapInternal;
 using Essy.Tools.InputBox;
 using System.Threading;
+using System.Xml.Serialization;
+
 namespace BslTranslator
 {
     static class Gesture
     {
         public static string GestureName { get; set; }
     }
+
+
     [TestFixture]
     class UnitTests
     {
@@ -37,7 +41,7 @@ namespace BslTranslator
         {
             RunTest();
         }
-    
+
         [Test]
         public void TestD()
         {
@@ -152,18 +156,22 @@ namespace BslTranslator
             controller.Connect += listener.OnServiceConnect;
             controller.Device += listener.OnConnect;
             controller.FrameReady += listener.OnFrame;
-            Thread.Sleep(15000);
+            while (listener.possibleGestures.Count < 250){ }
+            
             double correctRecognition = 0;
             double incorrectRecognition = 0;
-            foreach (var letter in listener.possibleGestures)
+            var gestures = listener.possibleGestures;
+            controller.StopConnection();
+            controller.Dispose();
+            foreach (var letter in gestures)
             {
-                if (letter.Contains(expectedString))
+                if (letter.Contains(expectedString.ToUpper()))
                 {
                     correctRecognition++;
                 }
                 else incorrectRecognition++;
             }
-            double accuracy = (correctRecognition / listener.possibleGestures.Count) * 100;
+            double accuracy = (correctRecognition / gestures.Count) * 100;
 
             if (accuracy > 70)
             {
@@ -179,75 +187,77 @@ namespace BslTranslator
         [TearDown]
         public void tearDown()
         {
-            controller.StopConnection();
-            controller.Dispose();
+     
+//            controller.StopConnection();
+//            controller.Dispose();
         }
     }
 
     class SampleListener
     {
-        public List<string> possibleGestures= new List<string>();
+        public List<string> possibleGestures = new List<string>();
         public static Queue<string[]> queue = new Queue<string[]>(50);
         readonly BslAlphabet alphabet = new BslAlphabet();
 
         public void OnServiceConnect(object sender, ConnectionEventArgs args)
         {
-//            Console.WriteLine("Service Connected");
+            //            Console.WriteLine("Service Connected");
 
         }
 
         public void OnConnect(object sender, DeviceEventArgs args)
         {
-//            Console.WriteLine("Connected");
+            //            Console.WriteLine("Connected");
         }
 
         public void OnFrame(object sender, FrameEventArgs args)
         {
             // Get the most recent frame and report some basic information
             Frame frame = args.frame;
-            
+
             LeapFrame LeapFrame = new LeapFrame();
             if (frame.Hands.Count == 2)
             {
+                
                 LeapFrame.A = alphabet.A(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.A)
                 {
-                   
+
                     possibleGestures.Add("A");
                 }
 
                 LeapFrame.B = alphabet.B(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.B)
                 {
-                    
+
                     possibleGestures.Add("B");
                 }
 
                 LeapFrame.V = alphabet.V(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.V)
                 {
-                   
+
                     possibleGestures.Add("V");
                 }
 
                 LeapFrame.D = alphabet.D(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.D)
                 {
-                   
+
                     possibleGestures.Add("D");
                 }
 
                 LeapFrame.E = alphabet.E(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.E)
                 {
-                    
+
                     possibleGestures.Add("E");
                 }
 
                 LeapFrame.F = alphabet.F(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.F)
                 {
-                
+
                     possibleGestures.Add("F");
                 }
 
@@ -260,85 +270,85 @@ namespace BslTranslator
                 LeapFrame.I = alphabet.I(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.I)
                 {
-                   
+
                     possibleGestures.Add("I");
                 }
 
-               
+
 
                 LeapFrame.K = alphabet.K(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.K)
                 {
-                   
+
                     possibleGestures.Add("K");
                 }
 
                 LeapFrame.L = alphabet.L(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.L)
                 {
-                    
+
                     possibleGestures.Add("L");
                 }
 
                 LeapFrame.M = alphabet.M(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.M)
                 {
-                   
+
                     possibleGestures.Add("M");
                 }
 
                 LeapFrame.N = alphabet.N(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.N)
                 {
-                 
+
                     possibleGestures.Add("N");
                 }
 
                 LeapFrame.O = alphabet.O(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.O)
                 {
-      
+
                     possibleGestures.Add("O");
                 }
 
                 LeapFrame.P = alphabet.P(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.P)
                 {
-                   
+
                     possibleGestures.Add("P");
                 }
 
                 LeapFrame.T = alphabet.T(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.T)
                 {
-               
+
                     possibleGestures.Add("T");
                 }
 
                 LeapFrame.U = alphabet.U(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.U)
                 {
-             
+
                     possibleGestures.Add("U");
                 }
 
                 LeapFrame.X = alphabet.X(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.X)
                 {
-        
+
                     possibleGestures.Add("X");
                 }
                 LeapFrame.Y = alphabet.Y(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.Y)
                 {
-      
+
                     possibleGestures.Add("Y");
                 }
                 LeapFrame.Z = alphabet.Z(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.Z)
 
                 {
-                
+
                     possibleGestures.Add("Z");
                 }
 
@@ -376,13 +386,13 @@ namespace BslTranslator
                 LeapFrame.C = alphabet.C(frame.Hands[0]);
                 if (LeapFrame.C)
                 {
-                
+
                     possibleGestures.Add("C");
                 }
                 LeapFrame.G = alphabet.G(frame.Hands[0]);
                 if (LeapFrame.G)
                 {
-                   
+
                     possibleGestures.Add("G");
                 }
 
