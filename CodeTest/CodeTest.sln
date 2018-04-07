@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BslTranslatorWeka", "CodeTest\BslTranslatorWeka.csproj", "{DAFACADA-D047-4EDD-8762-EC44782BB046}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAFACADA-D047-4EDD-8762-EC44782BB046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFACADA-D047-4EDD-8762-EC44782BB046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFACADA-D047-4EDD-8762-EC44782BB046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFACADA-D047-4EDD-8762-EC44782BB046}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4194C170-2DEE-4EAA-9695-2E77AB727FDC}
+	EndGlobalSection
+EndGlobal
