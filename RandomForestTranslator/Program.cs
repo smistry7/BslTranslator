@@ -34,9 +34,7 @@ namespace BslTranslatorWeka
             Listener listener = new Listener();
             controller.Connect += listener.OnServiceConnect;
             controller.Device += listener.OnConnect;
-
-
-            DateTime now = DateTime.Now;
+       
 
             controller.FrameReady += listener.OnFrame;
             //  Keep this process running until Enter is pressed

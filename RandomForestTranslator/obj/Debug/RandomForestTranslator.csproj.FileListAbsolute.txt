@@ -23,3 +23,6 @@ C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\Rando
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\RandomForestTranslator.csproj.CoreCompileInputs.cache
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\RandomForestTranslator.exe
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\RandomForestTranslator.pdb
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.dll
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.pdb
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.xml
