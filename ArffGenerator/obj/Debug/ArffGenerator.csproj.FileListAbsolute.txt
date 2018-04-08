@@ -1,0 +1,14 @@
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\ArffGenerator.exe.config
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\ArffGenerator.exe
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\ArffGenerator.pdb
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\BslTranslator.exe
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\LeapCSharp.NET4.5.dll
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\nunit.framework.dll
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\InputBox.dll
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\BslTranslator.pdb
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\nunit.framework.xml
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\bin\Debug\InputBox.pdb
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\obj\Debug\ArffGenerator.csprojResolveAssemblyReference.cache
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\obj\Debug\ArffGenerator.csproj.CoreCompileInputs.cache
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\obj\Debug\ArffGenerator.exe
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\obj\Debug\ArffGenerator.pdb

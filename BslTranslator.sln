@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BslTranslator", "BslTranslator\BslTranslator.csproj", "{DB0E2D53-7648-46B9-8A1B-3493A251EE87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BslTranslatorWeka", "..\CodeTest\CodeTest\BslTranslatorWeka.csproj", "{DAFACADA-D047-4EDD-8762-EC44782BB046}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArffGenerator", "ArffGenerator\ArffGenerator.csproj", "{1E52ABC6-3BD3-457C-95E9-A884C6A3B1BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +19,19 @@ Global
 		{DB0E2D53-7648-46B9-8A1B-3493A251EE87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB0E2D53-7648-46B9-8A1B-3493A251EE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB0E2D53-7648-46B9-8A1B-3493A251EE87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFACADA-D047-4EDD-8762-EC44782BB046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFACADA-D047-4EDD-8762-EC44782BB046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFACADA-D047-4EDD-8762-EC44782BB046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFACADA-D047-4EDD-8762-EC44782BB046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E52ABC6-3BD3-457C-95E9-A884C6A3B1BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E52ABC6-3BD3-457C-95E9-A884C6A3B1BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E52ABC6-3BD3-457C-95E9-A884C6A3B1BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E52ABC6-3BD3-457C-95E9-A884C6A3B1BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2CBD6441-AAA3-4AFC-B6E4-2C2D1506AF9C}
 	EndGlobalSection
 EndGlobal

@@ -1,3 +1,0 @@
-% structure for data mining sign language gestures
-% number of hands in frame, extended fingers for each hand, position of each finger tip
-% gesture identifier
