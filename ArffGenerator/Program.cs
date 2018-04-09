@@ -34,7 +34,7 @@ namespace ArffGenerator
             Gesture.GestureName = Console.ReadLine();
             Console.WriteLine("please hold gesture within 5 seconds");
             Thread.Sleep(5000);
-            while (DateTime.Now < now.AddSeconds(14))
+            while (DateTime.Now < now.AddSeconds(15))
             {
             }
 

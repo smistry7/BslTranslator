@@ -1,0 +1,286 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using BslTranslator;
+using Leap;
+using Frame = Leap.Frame;
+
+namespace BslTranslatorDesign
+{
+    
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public static Controller controller;
+        Listener listener; 
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void StopCapture_Click(object sender, RoutedEventArgs e)
+        {
+            controller.StopConnection();
+            controller.Dispose();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void BeginCapture_Click(object sender, RoutedEventArgs e)
+        {
+            controller = new Controller();
+            listener = new Listener(GestureText,HandCount);
+            controller.Connect += listener.OnServiceConnect;
+            controller.Device += listener.OnConnect;
+            controller.FrameReady += listener.OnFrame;
+           
+            // Keep this process running until Enter is pressed
+            
+
+      
+           
+        }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+        private void ClearText_Click(object sender, RoutedEventArgs e)
+        {
+            GestureText.Clear();
+        }
+
+        private void HandCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Space_Click(object sender, RoutedEventArgs e)
+        {
+            GestureText.Text += " ";
+        }
+    }
+    class Listener
+    {
+        private TextBox HandCount;
+        private TextBox GestureText;
+
+        public Listener(TextBox GestureText,TextBox HandCount)
+        {
+            this.GestureText = GestureText;
+            this.HandCount = HandCount;
+        }
+
+        public static Queue<string[]> queue = new Queue<string[]>(50);
+        readonly BslAlphabet alphabet = new BslAlphabet();
+
+        public void OnServiceConnect(object sender, ConnectionEventArgs args)
+        {
+            GestureText.Text += "\nService Connected\n";
+
+        }
+
+        public void OnConnect(object sender, DeviceEventArgs args)
+        {
+            GestureText.Text += "\nConnected\n";
+        }
+
+        public void OnFrame(object sender, FrameEventArgs args)
+        {
+            // Get the most recent frame and report some basic information
+
+            Frame frame = args.frame;
+            HandCount.Text = frame.Hands.Count.ToString();
+            List<string> possibleGestures = new List<string>();
+            LeapFrame leapFrame = new LeapFrame();
+            if (frame.Hands.Count == 2)
+            {
+                leapFrame.A = alphabet.A(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.A)
+                {
+
+                    possibleGestures.Add("A");
+                }
+
+                leapFrame.B = alphabet.B(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.B)
+                {
+
+                    possibleGestures.Add("B");
+                }
+
+                leapFrame.V = alphabet.V(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.V)
+                {
+
+                    possibleGestures.Add("V");
+                }
+
+                leapFrame.D = alphabet.D(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.D)
+                {
+
+                    possibleGestures.Add("D");
+                }
+
+                leapFrame.E = alphabet.E(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.E)
+                {
+
+                    possibleGestures.Add("E");
+                }
+
+                leapFrame.F = alphabet.F(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.F)
+                {
+
+                    possibleGestures.Add("F");
+                }
+
+                leapFrame.H = alphabet.H(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.H)
+                {
+
+                    possibleGestures.Add("H");
+                }
+
+                leapFrame.I = alphabet.I(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.I)
+                {
+
+                    possibleGestures.Add("I");
+                }
+
+             
+                leapFrame.K = alphabet.K(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.K)
+                {
+
+                    possibleGestures.Add("K");
+                }
+
+                leapFrame.L = alphabet.L(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.L)
+                {
+
+                    possibleGestures.Add("L");
+                }
+
+                leapFrame.M = alphabet.M(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.M)
+                {
+
+                    possibleGestures.Add("M");
+                }
+
+                leapFrame.N = alphabet.N(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.N)
+                {
+
+                    possibleGestures.Add("N");
+                }
+
+                leapFrame.O = alphabet.O(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.O)
+                {
+
+                    possibleGestures.Add("O");
+                }
+
+                leapFrame.P = alphabet.P(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.P)
+                {
+
+                    possibleGestures.Add("P");
+                }
+
+                leapFrame.T = alphabet.T(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.T)
+                {
+
+                    possibleGestures.Add("T");
+                }
+
+                leapFrame.U = alphabet.U(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.U)
+                {
+
+                    possibleGestures.Add("U");
+                }
+
+                leapFrame.X = alphabet.X(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.X)
+                {
+
+                    possibleGestures.Add("X");
+                }
+                leapFrame.Y = alphabet.Y(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.Y)
+                {
+
+                    possibleGestures.Add("Y");
+                }
+                leapFrame.Z = alphabet.Z(frame.Hands[0], frame.Hands[1]);
+                if (leapFrame.Z)
+
+                {
+                    possibleGestures.Add("Z");
+                }
+
+            }
+            if (frame.Hands.Count == 1)
+            {
+                leapFrame.C = alphabet.C(frame.Hands[0]);
+                if (leapFrame.C)
+                {
+                    possibleGestures.Add("C");
+                }
+                leapFrame.G = alphabet.G(frame.Hands[0]);
+                if (leapFrame.G)
+                {
+                    possibleGestures.Add("G");
+                }
+
+            }
+
+            if (possibleGestures.Count != 0) queue.Enqueue(possibleGestures.ToArray());
+            //find most common item in each string array in queue, add that to an array then find 
+            //the most common one out of those
+            if (queue.Count % 50 == 0 && queue.Count != 0)
+            {
+                List<string> mostCommon = new List<string>();
+                foreach (var stringArr in queue)
+                {
+                    foreach (string a in stringArr) mostCommon.Add(a);
+                }
+                GestureText.AppendText(mostCommon.GroupBy(x => x).OrderBy(g => g.Key).Distinct().First().Key);
+                queue.Clear();
+
+            }
+
+
+        }
+
+    }
+}

@@ -6,7 +6,7 @@ using Leap;
 
 namespace BslTranslator
 {
-    class LeapFrame
+    public class LeapFrame
     {
         BslAlphabet bslAlphabet = new BslAlphabet();
         public Frame frame { get; set; }

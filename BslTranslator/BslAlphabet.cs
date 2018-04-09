@@ -7,7 +7,7 @@ using NUnit.Framework.Api;
 
 namespace Leap
 {
-    internal class BslAlphabet
+    public class BslAlphabet
     {
         HandDataMethods handDataMethods = new HandDataMethods();
         public bool A(Hand left, Hand right)
@@ -171,10 +171,11 @@ namespace Leap
         }
         public bool W(Hand left, Hand right)
         {
-            return handDataMethods.ExtendedFingers(left, new[] { 0, 1, 2, 3, 4 }) && handDataMethods.ExtendedFingers(right, new[] { 0, 1, 2, 3, 4 })
-                   && handDataMethods.AreWithin(right.Fingers[2].Bone(Bone.BoneType.TYPE_INTERMEDIATE).PrevJoint,
+            return handDataMethods.ExtendedFingers(left, new[] { 0, 1, 2, 3, 4 }) 
+                && handDataMethods.ExtendedFingers(right, new[] { 0, 1, 2, 3, 4 })
+                && handDataMethods.AreWithin(right.Fingers[2].Bone(Bone.BoneType.TYPE_INTERMEDIATE).PrevJoint,
                        left.Fingers[2].Bone(Bone.BoneType.TYPE_INTERMEDIATE).PrevJoint, 20)
-                   && handDataMethods.AreWithin(right.Fingers[3].Bone(Bone.BoneType.TYPE_INTERMEDIATE).PrevJoint,
+                && handDataMethods.AreWithin(right.Fingers[3].Bone(Bone.BoneType.TYPE_INTERMEDIATE).PrevJoint,
                        left.Fingers[3].Bone(Bone.BoneType.TYPE_INTERMEDIATE).PrevJoint, 20);
         }
         public bool X(Hand left, Hand right)
@@ -198,12 +199,10 @@ namespace Leap
             if (handDataMethods.ExtendedFingers(left, new[] { 0, 1, 2, 3, 4 }) &&
                 handDataMethods.ExtendedFingers(right, new[] { 0, 1, 2, 3, 4 }))
             {
-                if ((Math.Abs(left.Fingers[1].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint.Magnitude
-                              - right.Fingers[2].TipPosition.Magnitude) < 15 || Math.Abs(
-                         left.Fingers[2].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint.Magnitude
-                         - right.Fingers[3].TipPosition.Magnitude) < 15) ||
-                    Math.Abs(right.Fingers[1].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint
-                                 .Magnitude
+                if ((Math.Abs(left.Fingers[1].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint.Magnitude- right.Fingers[2].TipPosition.Magnitude) < 15 
+                    || Math.Abs(left.Fingers[2].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint.Magnitude
+                         - right.Fingers[3].TipPosition.Magnitude) < 15) 
+                         ||Math.Abs(right.Fingers[1].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint.Magnitude
                              - left.Fingers[2].TipPosition.Magnitude) < 15 || Math.Abs(
                         right.Fingers[2].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint.Magnitude
                         - left.Fingers[3].TipPosition.Magnitude) < 15)

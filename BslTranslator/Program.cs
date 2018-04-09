@@ -38,7 +38,7 @@ namespace Leap
 
         public static Queue<string[]> queue = new Queue<string[]>(50);
         readonly BslAlphabet alphabet = new BslAlphabet();
-
+        private bool NewGesture;
         public void OnServiceConnect(object sender, ConnectionEventArgs args)
         {
             Console.WriteLine("Service Connected");
@@ -52,212 +52,236 @@ namespace Leap
 
         public void OnFrame(object sender, FrameEventArgs args)
         {
+
+
             // Get the most recent frame and report some basic information
             Frame frame = args.frame;
             List<string> possibleGestures = new List<string>();
             LeapFrame LeapFrame = new LeapFrame();
             if (frame.Hands.Count == 2)
             {
-                LeapFrame.A = alphabet.A(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.A)
+                if (frame.Hands[1].PalmVelocity.Magnitude > 20 || frame.Hands[0].PalmVelocity.Magnitude > 20)
                 {
-                    Console.WriteLine("A");
-                    possibleGestures.Add("A");
+                    NewGesture = true;
                 }
 
-                LeapFrame.B = alphabet.B(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.B)
+                if (!NewGesture)
                 {
-                    Console.WriteLine("B");
-                    possibleGestures.Add("B");
                 }
+                else
+                {
+                    LeapFrame.A = alphabet.A(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.A)
+                    {
+                        Console.WriteLine("A");
+                        possibleGestures.Add("A");
+                    }
 
-                LeapFrame.V = alphabet.V(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.V)
-                {
-                    Console.WriteLine("V");
-                    possibleGestures.Add("V");
-                }
+                    LeapFrame.B = alphabet.B(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.B)
+                    {
+                        Console.WriteLine("B");
+                        possibleGestures.Add("B");
+                    }
 
-                LeapFrame.D = alphabet.D(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.D)
-                {
-                    Console.WriteLine("D");
-                    possibleGestures.Add("D");
-                }
+                    LeapFrame.V = alphabet.V(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.V)
+                    {
+                        Console.WriteLine("V");
+                        possibleGestures.Add("V");
+                    }
 
-                LeapFrame.E = alphabet.E(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.E)
-                {
-                    Console.WriteLine("E");
-                    possibleGestures.Add("E");
-                }
+                    LeapFrame.D = alphabet.D(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.D)
+                    {
+                        Console.WriteLine("D");
+                        possibleGestures.Add("D");
+                    }
 
-                LeapFrame.F = alphabet.F(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.F)
-                {
-                    Console.WriteLine("F");
-                    possibleGestures.Add("F");
-                }
+                    LeapFrame.E = alphabet.E(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.E)
+                    {
+                        Console.WriteLine("E");
+                        possibleGestures.Add("E");
+                    }
 
-                LeapFrame.H = alphabet.H(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.H)
-                {
-                    Console.WriteLine("H");
-                    possibleGestures.Add("H");
-                }
+                    LeapFrame.F = alphabet.F(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.F)
+                    {
+                        Console.WriteLine("F");
+                        possibleGestures.Add("F");
+                    }
 
-                LeapFrame.I = alphabet.I(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.I)
-                {
-                    Console.WriteLine("I");
-                    possibleGestures.Add("I");
-                }
+                    LeapFrame.H = alphabet.H(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.H)
+                    {
+                        Console.WriteLine("H");
+                        possibleGestures.Add("H");
+                    }
 
-             
+                    LeapFrame.I = alphabet.I(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.I)
+                    {
+                        Console.WriteLine("I");
+                        possibleGestures.Add("I");
+                    }
 
-                LeapFrame.K = alphabet.K(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.K)
-                {
-                    Console.WriteLine("K");
-                    possibleGestures.Add("K");
-                }
 
-                LeapFrame.L = alphabet.L(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.L)
-                {
-                    Console.WriteLine("L");
-                    possibleGestures.Add("L");
-                }
+                    LeapFrame.K = alphabet.K(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.K)
+                    {
+                        Console.WriteLine("K");
+                        possibleGestures.Add("K");
+                    }
 
-                LeapFrame.M = alphabet.M(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.M)
-                {
-                    Console.WriteLine("M");
-                    possibleGestures.Add("M");
-                }
+                    LeapFrame.L = alphabet.L(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.L)
+                    {
+                        Console.WriteLine("L");
+                        possibleGestures.Add("L");
+                    }
 
-                LeapFrame.N = alphabet.N(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.N)
-                {
-                    Console.WriteLine("N");
-                    possibleGestures.Add("N");
-                }
+                    LeapFrame.M = alphabet.M(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.M)
+                    {
+                        Console.WriteLine("M");
+                        possibleGestures.Add("M");
+                    }
 
-                LeapFrame.O = alphabet.O(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.O)
-                {
-                    Console.WriteLine("O");
-                    possibleGestures.Add("O");
-                }
+                    LeapFrame.N = alphabet.N(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.N)
+                    {
+                        Console.WriteLine("N");
+                        possibleGestures.Add("N");
+                    }
 
-                LeapFrame.P = alphabet.P(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.P)
-                {
-                    Console.WriteLine("P");
-                    possibleGestures.Add("P");
-                }
+                    LeapFrame.O = alphabet.O(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.O)
+                    {
+                        Console.WriteLine("O");
+                        possibleGestures.Add("O");
+                    }
 
-                LeapFrame.T = alphabet.T(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.T)
-                {
-                    Console.WriteLine("T");
-                    possibleGestures.Add("T");
-                }
+                    LeapFrame.P = alphabet.P(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.P)
+                    {
+                        Console.WriteLine("P");
+                        possibleGestures.Add("P");
+                    }
 
-                LeapFrame.U = alphabet.U(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.U)
-                {
-                    Console.WriteLine("U");
-                    possibleGestures.Add("U");
-                }
+                    LeapFrame.T = alphabet.T(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.T)
+                    {
+                        Console.WriteLine("T");
+                        possibleGestures.Add("T");
+                    }
 
-                LeapFrame.X = alphabet.X(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.X)
-                {
-                    Console.WriteLine("X");
-                    possibleGestures.Add("X");
-                }
-                LeapFrame.W = alphabet.W(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.W)
-                {
-                    Console.WriteLine("W");
-                    possibleGestures.Add("W");
-                }
-                LeapFrame.S = alphabet.S(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.S)
-                {
-                    Console.WriteLine("S");
-                    possibleGestures.Add("S");
-                }
-                LeapFrame.Y = alphabet.Y(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.Y)
-                {
-                    Console.WriteLine("Y");
-                    possibleGestures.Add("Y");
-                }
-                LeapFrame.Z = alphabet.Z(frame.Hands[0], frame.Hands[1]);
-                if (LeapFrame.Z)
-                    
-                {
-                   Console.WriteLine("Z"); possibleGestures.Add("Z");
-                }
+                    LeapFrame.U = alphabet.U(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.U)
+                    {
+                        Console.WriteLine("U");
+                        possibleGestures.Add("U");
+                    }
 
+                    LeapFrame.X = alphabet.X(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.X)
+                    {
+                        Console.WriteLine("X");
+                        possibleGestures.Add("X");
+                    }
+                    LeapFrame.W = alphabet.W(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.W)
+                    {
+                        Console.WriteLine("W");
+                        possibleGestures.Add("W");
+                    }
+                    LeapFrame.S = alphabet.S(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.S)
+                    {
+                        Console.WriteLine("S");
+                        possibleGestures.Add("S");
+                    }
+                    LeapFrame.Y = alphabet.Y(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.Y)
+                    {
+                        Console.WriteLine("Y");
+                        possibleGestures.Add("Y");
+                    }
+                    LeapFrame.Z = alphabet.Z(frame.Hands[0], frame.Hands[1]);
+                    if (LeapFrame.Z)
+
+                    {
+                        Console.WriteLine("Z");
+                        possibleGestures.Add("Z");
+                    }
+                }
             }
             if (frame.Hands.Count == 1)
             {
-                LeapFrame.C = alphabet.C(frame.Hands[0]);
-                if (LeapFrame.C)
+                if (frame.Hands[0].PalmVelocity.Magnitude > 20)
                 {
-                    Console.WriteLine("C"); possibleGestures.Add("C");
-                }
-                LeapFrame.G = alphabet.G(frame.Hands[0]);
-                if (LeapFrame.G)
-                {
-                    Console.WriteLine("G"); possibleGestures.Add("G");
-                }
-                if (alphabet.One(frame.Hands[0]))
-                {
-                    Console.WriteLine("1");
-                }
-                if (alphabet.Two(frame.Hands[0]))
-                {
-                    Console.WriteLine("2");
-                }
-                if (alphabet.Three(frame.Hands[0]))
-                {
-                    Console.WriteLine("3");
-                }
-                if (alphabet.Four(frame.Hands[0]))
-                {
-                    Console.WriteLine("4");
-                }
-                if (alphabet.Five(frame.Hands[0]))
-                {
-                    Console.WriteLine("5");
-                }
-                if (alphabet.Six(frame.Hands[0]))
-                {
-                    Console.WriteLine("6");
-                }
-                if (alphabet.Seven(frame.Hands[0]))
-                {
-                    Console.WriteLine("7");
-                }
-                if (alphabet.Eight(frame.Hands[0]))
-                {
-                    Console.WriteLine("8");
-                }
-                if (alphabet.Nine(frame.Hands[0]))
-                {
-                    Console.WriteLine("9");
-                }
-                if (alphabet.Zero(frame.Hands[0]))
-                {
-                    Console.WriteLine("0");
+                    NewGesture = true;
                 }
 
+                if (!NewGesture)
+                {
+                }
+                else
+                {
+                    LeapFrame.C = alphabet.C(frame.Hands[0]);
+                    if (LeapFrame.C)
+                    {
+                        Console.WriteLine("C");
+                        possibleGestures.Add("C");
+                    }
+                    LeapFrame.G = alphabet.G(frame.Hands[0]);
+                    if (LeapFrame.G)
+                    {
+                        Console.WriteLine("G");
+                        possibleGestures.Add("G");
+                    }
+                    //                if (alphabet.One(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("1");
+                    //                }
+                    //                if (alphabet.Two(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("2");
+                    //                }
+                    //                if (alphabet.Three(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("3");
+                    //                }
+                    //                if (alphabet.Four(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("4");
+                    //                }
+                    //                if (alphabet.Five(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("5");
+                    //                }
+                    //                if (alphabet.Six(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("6");
+                    //                }
+                    //                if (alphabet.Seven(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("7");
+                    //                }
+                    //                if (alphabet.Eight(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("8");
+                    //                }
+                    //                if (alphabet.Nine(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("9");
+                    //                }
+                    //                if (alphabet.Zero(frame.Hands[0]))
+                    //                {
+                    //                    Console.WriteLine("0");
+                    //                }
 
+                }
             }
 
             if (possibleGestures.Count != 0) queue.Enqueue(possibleGestures.ToArray());
@@ -268,11 +292,11 @@ namespace Leap
                 List<string> mostCommon = new List<string>();
                 foreach (var stringArr in queue)
                 {
-                    foreach(string a in stringArr) mostCommon.Add(a);
+                    foreach (string a in stringArr) mostCommon.Add(a);
                 }
                 var ExpectedTerm = mostCommon.GroupBy(x => x).OrderBy(g => g.Key).First().Key;
-//                Console.WriteLine(ExpectedTerm);
                 queue.Clear();
+                NewGesture = false;
 
             }
 
