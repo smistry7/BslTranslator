@@ -20,8 +20,9 @@
                     <Button x:Name="ClearText" Content="Clear text" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Width="165" Height="57" FontSize="16" Grid.ColumnSpan="2" Click="ClearText_Click"/>
                     <Button x:Name="StopCapture" Content="Stop Capture" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Width="165" Height="66" Click="StopCapture_Click" FontSize="16" Grid.ColumnSpan="2"/>
                     <TextBox x:Name="HandCount" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="544.2,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="HandCount_TextChanged"/>
-                    <Label Content="HandsIdentified in frame:" Grid.Column="1" HorizontalAlignment="Left" Margin="332.2,6,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="Space" Content="Space" Grid.Column="1" HorizontalAlignment="Left" Margin="247.2,304,0,0" VerticalAlignment="Top" Width="324" Click="Space_Click"/>
+                    <Label Content="Hands Identified in frame:" Grid.Column="1" HorizontalAlignment="Left" Margin="332.2,6,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="Space" Content="Space" Grid.Column="1" HorizontalAlignment="Left" Margin="340.2,304,0,0" VerticalAlignment="Top" Width="324" Click="Space_Click"/>
+                    <Button x:Name="BackSpace" Content="Back Space" Grid.Column="1" HorizontalAlignment="Left" Margin="152.2,304,0,0" VerticalAlignment="Top" Width="97" Click="BackSpace_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Gesture list" Margin="66,0,-118,-1.6" RenderTransformOrigin="-0.382,0.429">

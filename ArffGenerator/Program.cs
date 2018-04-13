@@ -14,7 +14,7 @@ using Leap;
 
 namespace ArffGenerator
 {
-    static class Gesture
+    public static class Gesture
     {
         public static string GestureName { get; set; }
     }
@@ -26,15 +26,13 @@ namespace ArffGenerator
         {
             Controller controller = new Controller();
             SaveDataListener listener = new SaveDataListener();
-       
-            DateTime now = DateTime.Now;
-
-            controller.FrameReady += listener.OnFrame;
             Console.WriteLine("Enter the name of the gesture");
             Gesture.GestureName = Console.ReadLine();
             Console.WriteLine("please hold gesture within 5 seconds");
             Thread.Sleep(5000);
-            while (DateTime.Now < now.AddSeconds(15))
+            controller.FrameReady += listener.OnFrame;
+            DateTime now = DateTime.Now;
+            while (DateTime.Now < now.AddSeconds(5))
             {
             }
 

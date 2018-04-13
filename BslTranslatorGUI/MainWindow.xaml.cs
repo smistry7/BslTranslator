@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,16 +26,19 @@ namespace BslTranslatorDesign
     public partial class MainWindow : Window
     {
         public static Controller controller;
+        
         Listener listener; 
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void StopCapture_Click(object sender, RoutedEventArgs e)
         {
             controller.StopConnection();
             controller.Dispose();
+            BeginCapture.Background = Brushes.Red;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -49,15 +53,18 @@ namespace BslTranslatorDesign
         {
             controller = new Controller();
             listener = new Listener(GestureText,HandCount);
-            controller.Connect += listener.OnServiceConnect;
+            
             controller.Device += listener.OnConnect;
             controller.FrameReady += listener.OnFrame;
-           
-            // Keep this process running until Enter is pressed
-            
+            BeginCapture.Background = Brushes.Green;
 
-      
-           
+            if (!controller.IsConnected)
+            {
+                MessageBox.Show("Controller not connected");
+                BeginCapture.Background = Brushes.Red;
+            }
+
+
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -80,12 +87,17 @@ namespace BslTranslatorDesign
         {
             GestureText.Text += " ";
         }
+
+        private void BackSpace_Click(object sender, RoutedEventArgs e)
+        {
+            GestureText.Text = GestureText.Text.Remove(GestureText.Text.Length - 1, 1);
+        }
     }
     class Listener
     {
         private TextBox HandCount;
         private TextBox GestureText;
-
+        private bool TwoHands;
         public Listener(TextBox GestureText,TextBox HandCount)
         {
             this.GestureText = GestureText;
@@ -95,15 +107,11 @@ namespace BslTranslatorDesign
         public static Queue<string[]> queue = new Queue<string[]>(50);
         readonly BslAlphabet alphabet = new BslAlphabet();
 
-        public void OnServiceConnect(object sender, ConnectionEventArgs args)
-        {
-            GestureText.Text += "\nService Connected\n";
 
-        }
 
         public void OnConnect(object sender, DeviceEventArgs args)
         {
-            GestureText.Text += "\nConnected\n";
+            GestureText.Text += "Connected\n";
         }
 
         public void OnFrame(object sender, FrameEventArgs args)
@@ -116,6 +124,7 @@ namespace BslTranslatorDesign
             LeapFrame leapFrame = new LeapFrame();
             if (frame.Hands.Count == 2)
             {
+                TwoHands = true;
                 leapFrame.A = alphabet.A(frame.Hands[0], frame.Hands[1]);
                 if (leapFrame.A)
                 {
@@ -251,35 +260,37 @@ namespace BslTranslatorDesign
             }
             if (frame.Hands.Count == 1)
             {
-                leapFrame.C = alphabet.C(frame.Hands[0]);
-                if (leapFrame.C)
+                if (TwoHands)
                 {
-                    possibleGestures.Add("C");
+                    Thread.Sleep(1000);
+                    TwoHands = false;
                 }
-                leapFrame.G = alphabet.G(frame.Hands[0]);
-                if (leapFrame.G)
+                else
                 {
-                    possibleGestures.Add("G");
+                    leapFrame.C = alphabet.C(frame.Hands[0]);
+                    if (leapFrame.C)
+                    {
+                        possibleGestures.Add("C");
+                    }
+                    leapFrame.G = alphabet.G(frame.Hands[0]);
+                    if (leapFrame.G)
+                    {
+                        possibleGestures.Add("G");
+                    }
                 }
-
             }
 
             if (possibleGestures.Count != 0) queue.Enqueue(possibleGestures.ToArray());
             //find most common item in each string array in queue, add that to an array then find 
             //the most common one out of those
-            if (queue.Count % 50 == 0 && queue.Count != 0)
+            if (queue.Count % 75 != 0 || queue.Count == 0) return;
+            List<string> mostCommon = new List<string>();
+            foreach (var stringArr in queue)
             {
-                List<string> mostCommon = new List<string>();
-                foreach (var stringArr in queue)
-                {
-                    foreach (string a in stringArr) mostCommon.Add(a);
-                }
-                GestureText.AppendText(mostCommon.GroupBy(x => x).OrderBy(g => g.Key).Distinct().First().Key);
-                queue.Clear();
-
+                foreach (string a in stringArr) mostCommon.Add(a);
             }
-
-
+            GestureText.AppendText(mostCommon.GroupBy(x => x).OrderBy(g => g.Key).Distinct().First().Key);
+            queue.Clear();
         }
 
     }

@@ -39,6 +39,9 @@
     <Reference Include="IKVM.OpenJDK.Core">
       <HintPath>D:\Downloads\ikvm-8.1.5717.0\bin\IKVM.OpenJDK.Core.dll</HintPath>
     </Reference>
+    <Reference Include="InputBox, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Essy.Tools.InputBox.1.0.0\lib\net20\InputBox.dll</HintPath>
+    </Reference>
     <Reference Include="LeapCSharp.NET4.5">
       <HintPath>D:\Program Files\LeapSDK\lib\LeapCSharp.NET4.5.dll</HintPath>
     </Reference>
@@ -47,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Listener.cs" />
+    <Compile Include="LeapMotionClassifier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemTesting.cs" />
@@ -66,6 +70,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ArffGenerator\ArffGenerator.csproj">
+      <Project>{1e52abc6-3bd3-457c-95e9-a884c6a3b1ba}</Project>
+      <Name>ArffGenerator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

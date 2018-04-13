@@ -26,3 +26,11 @@ C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\Rando
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.dll
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.pdb
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.xml
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\ArffGenerator.exe
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\BslTranslator.exe
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\InputBox.dll
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\ArffGenerator.pdb
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\ArffGenerator.exe.config
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\BslTranslator.pdb
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\InputBox.pdb
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\RandomForestTranslator.exe.config

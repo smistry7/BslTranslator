@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BslAlphabet.cs" />
+    <Compile Include="ConsoleListener.cs" />
     <Compile Include="HandDataMethods.cs" />
     <Compile Include="LeapFrame.cs" />
     <Compile Include="Program.cs" />

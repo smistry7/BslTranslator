@@ -127,7 +127,30 @@ namespace Leap
                     ||
                    handDataMethods.AreWithin(left.Fingers[0].TipPosition, left.Fingers[1].TipPosition, 15) &&
                    handDataMethods.ExtendedFingers(right, new[] { 1 });
-        }  
+        }
+
+        public bool Q(Hand left, Hand right)
+        {
+            return ((left.Fingers[4].TipPosition.Normalized - right.PalmPosition.Normalized).Magnitude >= 0.7138
+                    && handDataMethods.FingerBend(left.Fingers[0]) > 0.1
+                    && (left.Fingers[0].TipPosition.Normalized - right.PalmPosition.Normalized).Magnitude <= 0.65
+                    && handDataMethods.FingerBend(right.Fingers[4]) < 0.7)
+                   ||
+                   ((right.Fingers[4].TipPosition.Normalized - left.PalmPosition.Normalized).Magnitude >= 0.7138
+                    && handDataMethods.FingerBend(right.Fingers[0]) > 0.1
+                    && (right.Fingers[0].TipPosition.Normalized - left.PalmPosition.Normalized).Magnitude <= 0.65
+                    && handDataMethods.FingerBend(left.Fingers[4]) < 0.7)
+                   || ((right.Fingers[4].TipPosition - left.Fingers[2].TipPosition).Magnitude >= -5.2
+                   && (right.Fingers[2].TipPosition - left.Fingers[4].TipPosition).Magnitude <= 16.58
+                   && handDataMethods.FingerBend(left.Fingers[1]) >= 0.276553
+                   && (right.Fingers[1].TipPosition.Normalized - left.PalmPosition.Normalized).Magnitude <= 0.174
+                   && handDataMethods.FingerBend(right.Fingers[0]) < 0.154)
+                   || ((left.Fingers[4].TipPosition - right.Fingers[2].TipPosition).Magnitude >= -5.2
+                       && (left.Fingers[2].TipPosition - right.Fingers[4].TipPosition).Magnitude <= 16.58
+                       && handDataMethods.FingerBend(right.Fingers[1]) >= 0.276553
+                       && (left.Fingers[1].TipPosition.Normalized - right.PalmPosition.Normalized).Magnitude <= 0.174
+                       && handDataMethods.FingerBend(left.Fingers[0]) < 0.154);
+        }
         //doesn't work
         //        public bool R(Hand left, Hand right)
         //        {
