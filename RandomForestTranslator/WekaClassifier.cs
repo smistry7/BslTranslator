@@ -3,15 +3,19 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using ArffGenerator;
 using java.io;
 using Leap;
+using RandomForestTranslator;
 using weka.classifiers.functions;
 using weka.classifiers.lazy;
 using weka.classifiers.trees;
 using weka.core;
+using Application = System.Windows.Application;
 using Console = System.Console;
 using File = System.IO.File;
 using Frame = Leap.Frame;
@@ -34,17 +38,15 @@ namespace BslTranslatorWeka
         public static List<string> MostProbable = new List<string>();
         public static List<string> SecondMostProbable = new List<string>();
         private bool _twoHands;
-        private readonly RichTextBox textBox;
-        private readonly TextBox HandCount;
-        private readonly TextBox SecondOption;
+        private bool isGui;
+
         private int _frameCount;
 
 
-        public WekaClassifier(RichTextBox textbox = null, TextBox handCount = null, TextBox secondOption = null, BackgroundWorker worker = null, DoWorkEventArgs e = null)
+        public WekaClassifier(bool isGui)
         {
-            this.SecondOption = secondOption;
-            this.textBox = textbox;
-            this.HandCount = handCount;
+            this.isGui = isGui;
+            
             _oneHandedGestures =
                 (Logistic)SerializationHelper.read(@"D:\Documents\BSL translator docs\Data mining stuff\models\updatedLogistic.model");
             _twoHandedGestures =
@@ -68,28 +70,30 @@ namespace BslTranslatorWeka
 
 
         }
-        public void LoadGestures(TextBox textbox)
+        public void LoadGestures()
         {
             foreach (var gesture in _oneHandedClasses)
             {
-                textbox.Text += gesture + "\n";
+                TextBoxValues.GestureList += gesture + "\n";
+                
             }
             foreach (var gesture in _twoHandedClasses)
             {
-                textbox.Text += gesture + "\n";
+                TextBoxValues.GestureList += gesture + "\n";
 
             }
         }
 
+       
         public void OnConnect(object sender, DeviceEventArgs args)
         {
-            if (textBox == null)
+            if (!isGui)
             {
                 Console.WriteLine("Connected");
             }
             else
             {
-                textBox.Selection.Text += "Connected\n";
+                TextBoxValues.Text += "Connected\n";
             }
         }
 
@@ -105,7 +109,7 @@ namespace BslTranslatorWeka
             var frame = args.frame;
 
 
-            if (textBox == null)
+            if (!isGui)
             {
                 ConsoleHandler(frame);
             }
@@ -134,7 +138,8 @@ namespace BslTranslatorWeka
 
         private void TextBoxHandler(Frame frame)
         {
-            HandCount.Text = frame.Hands.Count.ToString();
+
+            TextBoxValues.HandCount = frame.Hands.Count.ToString();
             if (frame.Hands.Count == 1)
             {
                 if (_twoHands)
@@ -212,15 +217,22 @@ namespace BslTranslatorWeka
             {
                 var listOccurances = CreateDictionary(MostProbable);
                 var gesture = (from x in listOccurances where x.Value == listOccurances.Max(v => v.Value) select x.Key).ToList();
-                textBox.Selection.Text += gesture[0];
+                if (gesture[0].Length > 1)
+                {
+                    TextBoxValues.Text += gesture[0] + " ";
+                }
+                else
+                {
+                    TextBoxValues.Text += gesture[0];
+                }
                 MostProbable = new List<string>();
             }
-            if (SecondMostProbable.Count % 7 == 0 && SecondMostProbable.Count != 0)
+            if (SecondMostProbable.Count % 3 == 0 && SecondMostProbable.Count != 0)
             {
                 var listOccurances = CreateDictionary(SecondMostProbable);
                 var gesture = (from x in listOccurances where x.Value == listOccurances.Max(v => v.Value) select x.Key).ToList();
 
-                SecondOption.Text += gesture[0];
+                TextBoxValues.SecondOption = gesture[0];
                 SecondMostProbable = new List<string>();
             }
             _frameCount++;

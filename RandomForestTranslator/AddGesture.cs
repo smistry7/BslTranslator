@@ -19,6 +19,10 @@ namespace RandomForestTranslator
 {
    public class AddGesture
     {
+        public void AddTrainingData()
+        {
+            
+        }
         public void AddTwoHandedGesture(Window window)
         {
             Controller controller = new Controller();
@@ -42,6 +46,7 @@ namespace RandomForestTranslator
             RandomForest updatedRandomForest = new RandomForest();
             updatedRandomForest.buildClassifier(instances);
             SerializationHelper.write(@"D:\Documents\BSL translator docs\Data mining stuff\models\updatedRandomForest.model", updatedRandomForest);
+            
         }
 
         public void AddOneHandedGesture(Window window)

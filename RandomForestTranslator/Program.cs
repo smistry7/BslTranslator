@@ -26,7 +26,7 @@ namespace BslTranslatorWeka
 
 
             var controller = new Controller();
-            var wekaClassifier = new WekaClassifier();
+            var wekaClassifier = new WekaClassifier(false);
             
             controller.Device += wekaClassifier.OnConnect;
        

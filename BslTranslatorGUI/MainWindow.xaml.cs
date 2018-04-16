@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ using System.Windows.Shapes;
 using BslTranslatorWeka;
 using Leap;
 using RandomForestTranslator;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 using MessageBox = System.Windows.MessageBox;
 
 namespace BslTranslatorGUI
@@ -26,15 +29,43 @@ namespace BslTranslatorGUI
         AddGesture addGesture = new AddGesture();
         private WekaClassifier wekaClassifier;
         public static Controller controller;
-
+        private BackgroundWorker worker;
+        private BackgroundWorker updater;
         RuleClassifier _ruleClassifier;
+
+        public delegate void UpdateTextCallback(string text);
+
         public MainWindow()
         {
             InitializeComponent();
-            wekaClassifier = new WekaClassifier();
-            wekaClassifier.LoadGestures(GestureList);
-        }
+            wekaClassifier = new WekaClassifier(true);
+            wekaClassifier.LoadGestures();
+            GestureList.Text = TextBoxValues.GestureList;
+            worker = new BackgroundWorker();
+            worker.DoWork += worker_doWork;
+            updater = new BackgroundWorker();
+            updater.DoWork += TextBoxUpdater;
 
+        }
+        public void TextBoxUpdater(object sender, DoWorkEventArgs e)
+        {
+            while (!updater.CancellationPending)
+            {
+                Thread.Sleep(100);
+                if (TextBoxValues.Text != null)
+                {
+                    this.Dispatcher.Invoke(() => GestureText2.Selection.Text = TextBoxValues.Text);
+                }
+                if (TextBoxValues.HandCount != null)
+                {
+                    this.Dispatcher.Invoke(() => HandCount2.Text = TextBoxValues.HandCount);
+                }
+                if (TextBoxValues.SecondOption != null)
+                {
+                    this.Dispatcher.Invoke(() => SecondOption.Text = TextBoxValues.SecondOption);
+                }
+            }
+        }
         private void StopCapture_Click(object sender, RoutedEventArgs e)
         {
             controller.StopConnection();
@@ -42,12 +73,16 @@ namespace BslTranslatorGUI
             ConnectionLabel.Background = Brushes.Red;
         }
 
-
+        public void DelegateMethod(string text)
+        {
+            GestureText2.Selection.Text += text;
+        }
   
         private void BeginCapture_Click(object sender, RoutedEventArgs e)
         {
             controller = new Controller();
             _ruleClassifier = new RuleClassifier(GestureText, HandCount);
+            
 
             controller.Device += _ruleClassifier.OnConnect;
             controller.FrameReady += _ruleClassifier.OnFrame;
@@ -65,25 +100,41 @@ namespace BslTranslatorGUI
 
 
         }
-   
+       
         private void BeginCapture2_Click(object sender, RoutedEventArgs e)
         {
+            if (updater.IsBusy) return;
+            worker.RunWorkerAsync();
+            updater.RunWorkerAsync();
+        }
+
+        private void worker_doWork(object sender,DoWorkEventArgs e)
+        {
             controller = new Controller();
-            wekaClassifier = new WekaClassifier(GestureText2,HandCount2,SecondOption);
+            this.SecondOption.KeyDown += new KeyEventHandler(CheckEnterKeyPress);
+            wekaClassifier = new WekaClassifier(true);
             controller.Device += wekaClassifier.OnConnect;
             controller.FrameReady += wekaClassifier.OnFrame;
             if (controller.IsConnected)
             {
-                Connection2.Background= Brushes.Green;
+                this.Dispatcher.Invoke(() => Connection2.Background = Brushes.Green);
+
             }
             else
             {
                 MessageBox.Show("Controller not connected");
-                ConnectionLabel.Background = Brushes.Red;
+                this.Dispatcher.Invoke(() => Connection2.Background = Brushes.Red);
             }
-
-
         }
+
+        private void CheckEnterKeyPress(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Return) return;
+            TextBoxValues.Text = TextBoxValues.Text.Remove(TextBoxValues.Text.Length - 1, 1);
+            TextBoxValues.Text += TextBoxValues.SecondOption;
+        }
+
+
         private void ClearText_Click(object sender, RoutedEventArgs e)
         {
             GestureText.Clear();
@@ -141,7 +192,7 @@ namespace BslTranslatorGUI
 
         private void ClearText2_Click(object sender, RoutedEventArgs e)
         {
-            GestureText2.Selection.Text = "";
+            TextBoxValues.Text = "";
         }
 
 
@@ -150,20 +201,24 @@ namespace BslTranslatorGUI
             controller.StopConnection();
             controller.Dispose();
             Connection2.Background = Brushes.Red;
+           
+            updater.CancelAsync();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
+
+
+        private void Space2_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxValues.Text += " ";
         }
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+
+        private void BackSpace2_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void HandCount2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            if (GestureText2.Selection.Text.Length > 0)
+            {
+                TextBoxValues.Text = GestureText2.Selection.Text.Remove(GestureText2.Selection.Text.Length - 1, 1);
+            }
         }
     }
 }

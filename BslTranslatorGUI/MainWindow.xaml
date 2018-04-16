@@ -19,7 +19,7 @@
                     <TextBox x:Name="GestureText" HorizontalAlignment="Left" Height="220" Margin="152.2,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="512" FontSize="22" Grid.Column="1" TextChanged="GestureText_TextChanged"/>
                     <Button x:Name="ClearText" Content="Clear text" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Width="165" Height="57" FontSize="16" Grid.ColumnSpan="2" Click="ClearText_Click"/>
                     <Button x:Name="StopCapture" Content="Stop Capture" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Width="165" Height="66" Click="StopCapture_Click" FontSize="16" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="HandCount" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="544.2,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="HandCount_TextChanged"/>
+                    <TextBox x:Name="HandCount" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="544.2,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Hands Identified in frame:" Grid.Column="1" HorizontalAlignment="Left" Margin="332.2,6,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="Space" Content="Space" Grid.Column="1" HorizontalAlignment="Left" Margin="340.2,304,0,0" VerticalAlignment="Top" Width="324" Click="Space_Click"/>
                     <Button x:Name="BackSpace" Content="Back Space" Grid.Column="1" HorizontalAlignment="Left" Margin="152.2,304,0,0" VerticalAlignment="Top" Width="97" Click="BackSpace_Click"/>
@@ -35,7 +35,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="62.2,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="393" Grid.ColumnSpan="2" Grid.Column="1"/>
                     <Button Content="Search" Grid.Column="2" HorizontalAlignment="Left" Margin="330.8,42,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
-                    <TextBox x:Name="GestureList" HorizontalAlignment="Left" Height="273" Margin="62.2,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="506" Grid.ColumnSpan="2" FontSize="22" TextChanged="TextBox_TextChanged_1" Grid.Column="1"/>
+                    <TextBox x:Name="GestureList" HorizontalAlignment="Left" Height="273" Margin="62.2,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="506" Grid.ColumnSpan="2" FontSize="22" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabControl Height="100" Width="100">
@@ -47,7 +47,7 @@
                 </TabItem>
             </TabControl>
             <TabItem Header="Data mining" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="128" Margin="-21.2,0,0,-0.4" FontSize="16">
-                <Grid Background="#FFE5E5E5">
+                <Grid x:Name="Form" Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="99*"/>
                         <ColumnDefinition Width="670*"/>
@@ -58,12 +58,14 @@
                     <RichTextBox x:Name="GestureText2" HorizontalAlignment="Left" Height="216" Margin="116.8,92,0,0" VerticalAlignment="Top" Width="510" Grid.Column="1" TextChanged="GestureText2_TextChanged">
                         <FlowDocument/>
                     </RichTextBox>
-                    <Label Content="Hands Identified in frame" Grid.Column="1" HorizontalAlignment="Left" Margin="305.8,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="HandCount2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="506.8,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="HandCount2_TextChanged"/>
+                    <Label Content="Hands Identified in frame" Grid.Column="1" HorizontalAlignment="Left" Margin="255.8,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="HandCount2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="506.8,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="AddGesture" Content="Add Gesture" HorizontalAlignment="Left" Margin="24,301,0,0" VerticalAlignment="Top" Width="163" Grid.ColumnSpan="2" Height="55" Click="AddGesture_Click"/>
                     <Label x:Name="Connection2" Content="Connection" HorizontalAlignment="Left" Margin="60,14,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="97"/>
-                    <Label Content="Second option" Grid.Column="1" HorizontalAlignment="Left" Margin="305.8,47,0,0" VerticalAlignment="Top" Width="189"/>
-                    <TextBox x:Name="SecondOption" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="506.8,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+                    <Label Content="Second option (press ENTER to apply)" Grid.Column="1" HorizontalAlignment="Left" Margin="166.8,47,0,0" VerticalAlignment="Top" Width="278"/>
+                    <TextBox x:Name="SecondOption" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="506.8,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="Space2" Content="Space" Grid.Column="1" HorizontalAlignment="Left" Margin="304.8,330,0,0" VerticalAlignment="Top" Width="324" Click="Space2_Click"/>
+                    <Button x:Name="BackSpace_Copy" Content="Back Space" Grid.Column="1" HorizontalAlignment="Left" Margin="116.8,330,0,0" VerticalAlignment="Top" Width="97" Click="BackSpace2_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

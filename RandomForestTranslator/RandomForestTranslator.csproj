@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddGesture.cs" />
+    <Compile Include="TextBoxValues.cs" />
     <Compile Include="WekaClassifier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
