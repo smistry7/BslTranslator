@@ -11,6 +11,27 @@ namespace ArffGenerator
     public class WriteArffMethods
     {
         HandDataMethods handDataMethods = new HandDataMethods();
+        public List<string> TwoHandData(Frame frame, Hand right, Hand left, string gestureName)
+        {
+            var handData = new List<string> { frame.Hands.Count.ToString() };
+            handData[0] += FingerBends(right);
+            handData[0] += FingerBends(left);
+            handData[0] += NormalisedFingerPositions(right, left);
+            handData[0] += NormalisedFingerPositions(left, right);
+            handData[0] += FingerDistances(right, left);
+            handData[0] += "," + gestureName;
+            return handData;
+        }
+
+        public List<string> SingleHandData(Frame frame, string gestureName)
+        {
+            List<string> handData = new List<string>() { frame.Hands.Count.ToString() };
+
+            handData[0] += FingerBends(frame.Hands[0]);
+            handData[0] += SingleFingerDistances(frame.Hands[0]);
+            handData[0] += ","+gestureName;
+            return handData;
+        }
 
         public string SingleFingerDistances(Hand hand)
         {

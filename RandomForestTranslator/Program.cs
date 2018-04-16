@@ -25,13 +25,13 @@ namespace BslTranslatorWeka
         {
 
 
-            Controller controller = new Controller();
-            LeapMotionClassifier leapMotionClassifier = new LeapMotionClassifier();
-            controller.Connect += leapMotionClassifier.OnServiceConnect;
-            controller.Device += leapMotionClassifier.OnConnect;
+            var controller = new Controller();
+            var wekaClassifier = new WekaClassifier();
+            
+            controller.Device += wekaClassifier.OnConnect;
        
 
-            controller.FrameReady += leapMotionClassifier.OnFrame;
+            controller.FrameReady += wekaClassifier.OnFrame;
             //  Keep this process running until Enter is pressed
             Console.WriteLine("Press Enter to quit...");
             Console.ReadLine();

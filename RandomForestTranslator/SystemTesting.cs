@@ -17,7 +17,7 @@ using Console = System.Console;
 namespace RandomForestTranslator
 {
     [TestFixture]
-    class SystemTesting
+   public class SystemTesting
     {
         private RandomForest RandomForest;
         private Logistic OneHandedGestures;
@@ -92,28 +92,7 @@ namespace RandomForestTranslator
 
 
         }
-        [Test]
-        public void AddGesture()
-        {
-            Controller controller = new Controller();
-            var listener = new SaveDataListener();
-            Gesture.GestureName = InputBox.ShowInputBox("please enter the name of the gesture");
-            MessageBox.Show("please holds gesture until test completes.");
-            controller.FrameReady += listener.OnFrame;
-            Thread.Sleep(10000);
-            controller.StopConnection();
-            controller.Dispose();
-            string text = System.IO.File.ReadAllText(@"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SignLanguageDataUpdateable.arff");
-            text = text.Replace("}", "," + Gesture.GestureName + "}");
-            System.IO.File.WriteAllText(@"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SignLanguageDataUpdateable.arff", text);
-            Instances instances = new Instances(
-               new BufferedReader(
-                   new FileReader(
-                       @"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SignLanguageDataUpdateable.arff")));
-            instances.setClassIndex(instances.numAttributes() - 1);
-            RandomForest updatedRandomForest = new RandomForest();
-            updatedRandomForest.buildClassifier(instances);
-            weka.core.SerializationHelper.write(@"D:\Documents\BSL translator docs\Data mining stuff\models\updatedRandomForest.model", updatedRandomForest);
-        }
+  
+      
     }
 }

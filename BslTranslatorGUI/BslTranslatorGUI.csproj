@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -48,6 +49,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="weka">
+      <HintPath>..\..\..\..\weka.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -58,6 +62,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MessageBoxManager.cs" />
+    <Compile Include="RuleClassifier.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,9 +104,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ArffGenerator\ArffGenerator.csproj">
+      <Project>{1e52abc6-3bd3-457c-95e9-a884c6a3b1ba}</Project>
+      <Name>ArffGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BslTranslator\BslTranslator.csproj">
       <Project>{db0e2d53-7648-46b9-8a1b-3493a251ee87}</Project>
       <Name>BslTranslator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RandomForestTranslator\RandomForestTranslator.csproj">
+      <Project>{bffbee7f-6df2-4644-9d79-d64fab3a3edc}</Project>
+      <Name>RandomForestTranslator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
