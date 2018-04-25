@@ -7,22 +7,21 @@ namespace ArffGenerator
 {
     public class SaveDataListener
     {
-        HandDataMethods handDataMethods = new HandDataMethods();
-        WriteArffMethods writeArffMethods = new WriteArffMethods();
-
+        readonly WriteArffMethods _writeArffMethods = new WriteArffMethods();
+        public bool OneHandedGesture;
         public void OnFrame(object sender, FrameEventArgs args)
         {
             Frame frame = args.frame;
-            if (frame.Hands.Count == 1)
+            if (frame.Hands.Count == 1 && OneHandedGesture)
             {
-                List<string> handData = writeArffMethods.SingleHandData(frame, Gesture.GestureName);
+                List<string> handData = _writeArffMethods.SingleHandData(frame, Gesture.GestureName);
 
 
                 File.AppendAllLines(
                     @"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SingleHandData.arff",
                     handData);
             }
-            if (frame.Hands.Count == 2)
+            if (frame.Hands.Count == 2 && !OneHandedGesture)
             {
 
                 Hand right;
@@ -38,7 +37,7 @@ namespace ArffGenerator
                     left = frame.Hands[1];
                 }
 
-                var handData = writeArffMethods.TwoHandData(frame, right, left, Gesture.GestureName);
+                var handData = _writeArffMethods.TwoHandData(frame, right, left, Gesture.GestureName);
 
                 File.AppendAllLines(
                     @"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SignLanguageDataUpdateable.arff",

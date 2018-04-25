@@ -38,6 +38,10 @@
     <Reference Include="LeapCSharp.NET4.5">
       <HintPath>D:\Program Files\LeapSDK\lib\LeapCSharp.NET4.5.dll</HintPath>
     </Reference>
+    <Reference Include="MessageBoxManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MessageBoxManager.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -62,7 +66,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MessageBoxManager.cs" />
     <Compile Include="RuleClassifier.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

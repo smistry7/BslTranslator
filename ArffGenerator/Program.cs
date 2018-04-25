@@ -25,7 +25,8 @@ namespace ArffGenerator
         static void Main(string[] args)
         {
             Controller controller = new Controller();
-            SaveDataListener listener = new SaveDataListener();
+            SaveDataListener listener = new SaveDataListener(){OneHandedGesture = true};
+            
             Console.WriteLine("Enter the name of the gesture");
             Gesture.GestureName = Console.ReadLine();
             Console.WriteLine("please hold gesture within 5 seconds");

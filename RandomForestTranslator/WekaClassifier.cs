@@ -1,26 +1,16 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Forms;
-using System.Windows.Threading;
 using ArffGenerator;
 using java.io;
 using Leap;
 using RandomForestTranslator;
 using weka.classifiers.functions;
-using weka.classifiers.lazy;
 using weka.classifiers.trees;
 using weka.core;
-using Application = System.Windows.Application;
 using Console = System.Console;
 using File = System.IO.File;
 using Frame = Leap.Frame;
-using RichTextBox = System.Windows.Controls.RichTextBox;
-using TextBox = System.Windows.Controls.TextBox;
 
 
 namespace BslTranslatorWeka
@@ -31,14 +21,14 @@ namespace BslTranslatorWeka
         private readonly WriteArffMethods _writeArffMethods = new WriteArffMethods();
         private readonly RandomForest _twoHandedGestures;
         private readonly Logistic _oneHandedGestures;
-        private readonly string[] _twoHandedClasses;
+        public readonly string[] _twoHandedClasses;
         private readonly string _fileLocationOneHand;
         private readonly string _fileLocationTwoHand;
-        private readonly string[] _oneHandedClasses;
+        public readonly string[] _oneHandedClasses;
         public static List<string> MostProbable = new List<string>();
         public static List<string> SecondMostProbable = new List<string>();
         private bool _twoHands;
-        private bool isGui;
+        private readonly bool isGui;
 
         private int _frameCount;
 
@@ -158,11 +148,10 @@ namespace BslTranslatorWeka
                         (int)_oneHandedGestures.classifyInstance(OneHandInstances.lastInstance());
                     double prob = _oneHandedGestures.distributionForInstance(OneHandInstances.lastInstance())
                         .Max();
-                    if (prob > 0.80)
+                    if (prob > 0.50)
                     {
                         MostProbable.Add(_oneHandedClasses[predictionInt]);
-                        //                        textBox.Selection.Text += "Prediction: " + _oneHandedClasses[predictionInt] +
-                        //                                          "  Probability: " + prob+"\n";
+                   
 
                     }
                 }
@@ -213,7 +202,7 @@ namespace BslTranslatorWeka
                 }
 
             }
-            if (MostProbable.Count % 7 == 0 && MostProbable.Count != 0)
+            if (MostProbable.Count % 10 == 0 && MostProbable.Count != 0)
             {
                 var listOccurances = CreateDictionary(MostProbable);
                 var gesture = (from x in listOccurances where x.Value == listOccurances.Max(v => v.Value) select x.Key).ToList();
@@ -227,7 +216,7 @@ namespace BslTranslatorWeka
                 }
                 MostProbable = new List<string>();
             }
-            if (SecondMostProbable.Count % 3 == 0 && SecondMostProbable.Count != 0)
+            if (SecondMostProbable.Count % 10 == 0 && SecondMostProbable.Count != 0)
             {
                 var listOccurances = CreateDictionary(SecondMostProbable);
                 var gesture = (from x in listOccurances where x.Value == listOccurances.Max(v => v.Value) select x.Key).ToList();

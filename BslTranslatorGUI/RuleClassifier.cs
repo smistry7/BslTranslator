@@ -34,7 +34,14 @@ namespace BslTranslatorGUI
             // Get the most recent frame and report some basic information
 
             Frame frame = args.frame;
-            HandCount.Text = frame.Hands.Count.ToString();
+            try
+            {
+                HandCount.Text = frame.Hands.Count.ToString();
+            }
+            catch
+            {
+                return;
+            }
             List<string> possibleGestures = new List<string>();
             LeapFrame leapFrame = new LeapFrame();
             if (frame.Hands.Count == 2)

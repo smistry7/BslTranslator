@@ -16,7 +16,7 @@ using Console = System.Console;
 
 namespace RandomForestTranslator
 {
-    [TestFixture]
+   [TestFixture]
    public class SystemTesting
     {
         private RandomForest RandomForest;
@@ -64,7 +64,7 @@ namespace RandomForestTranslator
 
         }
         [Test]
-        public void OneHandRandomForestTest()
+        public void OneHandLogisticTest()
         {
             int correctInstances = 0;
             double TotalErrorPrediction = 0;

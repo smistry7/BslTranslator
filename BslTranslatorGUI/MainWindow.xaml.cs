@@ -1,19 +1,10 @@
-﻿using System;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BslTranslatorWeka;
 using Leap;
 using RandomForestTranslator;
@@ -26,30 +17,38 @@ namespace BslTranslatorGUI
 
     public partial class MainWindow : System.Windows.Window
     {
-        AddGesture addGesture = new AddGesture();
-        private WekaClassifier wekaClassifier;
-        public static Controller controller;
-        private BackgroundWorker worker;
-        private BackgroundWorker updater;
-        RuleClassifier _ruleClassifier;
-
+        readonly AlterModel _alterModel = new AlterModel();
+        private WekaClassifier _wekaClassifier;
+        public static Controller Controller;
+        private BackgroundWorker _wekaWorker;
+        private BackgroundWorker _updater;
+        private RuleClassifier _ruleClassifier;
         public delegate void UpdateTextCallback(string text);
 
         public MainWindow()
         {
             InitializeComponent();
-            wekaClassifier = new WekaClassifier(true);
-            wekaClassifier.LoadGestures();
+            _wekaClassifier = new WekaClassifier(true);
+            _wekaClassifier.LoadGestures();
             GestureList.Text = TextBoxValues.GestureList;
-            worker = new BackgroundWorker();
-            worker.DoWork += worker_doWork;
-            updater = new BackgroundWorker();
-            updater.DoWork += TextBoxUpdater;
-
+            InitialiseBackgroundWorkers();
         }
+
+        private void InitialiseBackgroundWorkers()
+        {
+            _wekaWorker = new BackgroundWorker();
+            _wekaWorker.DoWork += WekaWorkerDoWork;
+            _updater = new BackgroundWorker();
+            _updater.DoWork += TextBoxUpdater;
+
+
+            _wekaWorker.WorkerSupportsCancellation = true;
+            _updater.WorkerSupportsCancellation = true;
+        }
+
         public void TextBoxUpdater(object sender, DoWorkEventArgs e)
         {
-            while (!updater.CancellationPending)
+            while (!_updater.CancellationPending)
             {
                 Thread.Sleep(100);
                 if (TextBoxValues.Text != null)
@@ -68,27 +67,26 @@ namespace BslTranslatorGUI
         }
         private void StopCapture_Click(object sender, RoutedEventArgs e)
         {
-            controller.StopConnection();
-            controller.Dispose();
+            if (Controller != null)
+            {
+                Controller.StopConnection();
+                Controller.Dispose();
+            }
             ConnectionLabel.Background = Brushes.Red;
         }
 
-        public void DelegateMethod(string text)
-        {
-            GestureText2.Selection.Text += text;
-        }
-  
+
         private void BeginCapture_Click(object sender, RoutedEventArgs e)
         {
-            controller = new Controller();
+            Controller = new Controller();
             _ruleClassifier = new RuleClassifier(GestureText, HandCount);
-            
 
-            controller.Device += _ruleClassifier.OnConnect;
-            controller.FrameReady += _ruleClassifier.OnFrame;
+
+            Controller.Device += _ruleClassifier.OnConnect;
+            Controller.FrameReady += _ruleClassifier.OnFrame;
             Thread.Sleep(500);
 
-            if (controller.IsConnected)
+            if (Controller.IsConnected)
             {
                 ConnectionLabel.Background = Brushes.Green;
             }
@@ -100,22 +98,22 @@ namespace BslTranslatorGUI
 
 
         }
-       
+
         private void BeginCapture2_Click(object sender, RoutedEventArgs e)
         {
-            if (updater.IsBusy) return;
-            worker.RunWorkerAsync();
-            updater.RunWorkerAsync();
+            if (_updater.IsBusy) return;
+            _wekaWorker.RunWorkerAsync();
+            _updater.RunWorkerAsync();
         }
 
-        private void worker_doWork(object sender,DoWorkEventArgs e)
+        private void WekaWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            controller = new Controller();
+            Controller = new Controller();
             this.SecondOption.KeyDown += new KeyEventHandler(CheckEnterKeyPress);
-            wekaClassifier = new WekaClassifier(true);
-            controller.Device += wekaClassifier.OnConnect;
-            controller.FrameReady += wekaClassifier.OnFrame;
-            if (controller.IsConnected)
+            _wekaClassifier = new WekaClassifier(true);
+            Controller.Device += _wekaClassifier.OnConnect;
+            Controller.FrameReady += _wekaClassifier.OnFrame;
+            if (Controller.IsConnected)
             {
                 this.Dispatcher.Invoke(() => Connection2.Background = Brushes.Green);
 
@@ -140,10 +138,7 @@ namespace BslTranslatorGUI
             GestureText.Clear();
         }
 
-        private void HandCount_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
-        }
 
         private void Space_Click(object sender, RoutedEventArgs e)
         {
@@ -152,7 +147,10 @@ namespace BslTranslatorGUI
 
         private void BackSpace_Click(object sender, RoutedEventArgs e)
         {
-            GestureText.Text = GestureText.Text.Remove(GestureText.Text.Length - 1, 1);
+            if (GestureText.Text.Length > 0)
+            {
+                GestureText.Text = GestureText.Text.Remove(GestureText.Text.Length - 1, 1);
+            }
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -181,11 +179,11 @@ namespace BslTranslatorGUI
 
             if (response == MessageBoxResult.Yes)
             {
-                addGesture.AddOneHandedGesture(this.Owner);
+                _alterModel.AddOneHandedGesture(this.Owner);
             }
             else if (response == MessageBoxResult.No)
             {
-                addGesture.AddTwoHandedGesture(Owner);
+                _alterModel.AddTwoHandedGesture(Owner);
             }
             MessageBoxManager.Unregister();
         }
@@ -198,11 +196,14 @@ namespace BslTranslatorGUI
 
         private void StopCapture2_Click(object sender, RoutedEventArgs e)
         {
-            controller.StopConnection();
-            controller.Dispose();
+            if (Controller != null)
+            {
+                Controller.StopConnection();
+                Controller.Dispose();
+            }
             Connection2.Background = Brushes.Red;
-           
-            updater.CancelAsync();
+
+            _updater.CancelAsync();
         }
 
 
@@ -220,6 +221,40 @@ namespace BslTranslatorGUI
                 TextBoxValues.Text = GestureText2.Selection.Text.Remove(GestureText2.Selection.Text.Length - 1, 1);
             }
         }
+
+        private void AddTrainingData_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxManager.Yes = "1";
+            MessageBoxManager.No = "2";
+            MessageBoxManager.Register();
+            var response = MessageBox.Show("How many hands does this gesture require", "", MessageBoxButton.YesNoCancel);
+
+            if (response == MessageBoxResult.Yes)
+            {
+                _alterModel.AddOneHandedTrainingData();
+            }
+            else if (response == MessageBoxResult.No)
+            {
+                _alterModel.AddTwoHandedTrainingData();
+            }
+            MessageBoxManager.Unregister();
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            var gestures = TextBoxValues.GestureList.Split('\n');
+            var searchResults = "";
+            var searchTerm = SearchTerm.Text;
+            foreach (var gesture in gestures)
+            {
+                if (gesture.Contains(searchTerm))
+                {
+                    searchResults += gesture + "\n";
+                }
+            }
+            GestureList.Text = searchResults;
+        }
+
     }
 }
 
