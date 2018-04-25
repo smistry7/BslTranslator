@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
-using ArffGenerator;
-using Essy.Tools.InputBox;
-using java.io;
-using Leap;
+﻿using java.io;
 using NUnit.Framework;
+using System;
+using System.Linq;
 using weka.classifiers.functions;
 using weka.classifiers.trees;
 using weka.core;
@@ -16,17 +9,17 @@ using Console = System.Console;
 
 namespace RandomForestTranslator
 {
-   [TestFixture]
-   public class SystemTesting
+    [TestFixture]
+    public class SystemTesting
     {
         private RandomForest RandomForest;
         private Logistic OneHandedGestures;
         private String[] classes;
         private string[] OneHandedClasses;
+
         [SetUp]
         public void SetUp()
         {
-
             classes = new[] { "a", "b", "d", "e", "f", "i", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
             RandomForest = (RandomForest)SerializationHelper.read(@"D:\Documents\BSL translator docs\Data mining stuff\models\RandomForest.model");
@@ -34,6 +27,7 @@ namespace RandomForestTranslator
             OneHandedGestures =
             (Logistic)SerializationHelper.read(@"D:\Documents\BSL translator docs\Data mining stuff\models\SingleHandLogistic.model");
         }
+
         [Test]
         public void TwoHandRandomForestTest()
         {
@@ -59,10 +53,8 @@ namespace RandomForestTranslator
             var averageErrorPrediction = TotalErrorPrediction / ((double)correctInstances);
             Console.WriteLine("Accuracy: " + accuracy + " Average Error Prediction: " + averageErrorPrediction);
             Assert.Greater(accuracy, 0.75);
-
-
-
         }
+
         [Test]
         public void OneHandLogisticTest()
         {
@@ -88,11 +80,6 @@ namespace RandomForestTranslator
             var averageErrorPrediction = TotalErrorPrediction / ((double)correctInstances);
             Console.WriteLine("Accuracy: " + accuracy + " Average Error Prediction: " + averageErrorPrediction);
             Assert.Greater(accuracy, 0.75);
-
-
-
         }
-  
-      
     }
 }

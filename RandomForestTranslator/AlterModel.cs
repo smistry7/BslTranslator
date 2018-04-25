@@ -1,57 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using ArffGenerator;
+﻿using ArffGenerator;
 using Essy.Tools.InputBox;
 using java.io;
 using Leap;
+using System.Linq;
+using System.Threading;
+using System.Windows;
 using weka.classifiers.functions;
 using weka.classifiers.trees;
 using weka.core;
-using File = System.IO.File;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace RandomForestTranslator
 {
-   public class AlterModel
+    public class AlterModel
     {
         private Controller controller = new Controller();
+
+
         public void AddTwoHandedTrainingData()
         {
-            
             AddNewData(false);
-            Instances instances = new Instances(
-                new BufferedReader(
-                    new FileReader(
-                        @"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SignLanguageDataUpdateable.arff")));
+            var instances = new Instances(new BufferedReader(new FileReader(FileLocations.TwoHandedDataFilePath)));
             instances.setClassIndex(instances.numAttributes() - 1);
             RandomForest updatedRandomForest = new RandomForest();
             updatedRandomForest.buildClassifier(instances);
-            SerializationHelper.write(@"D:\Documents\BSL translator docs\Data mining stuff\models\updatedRandomForest.model", updatedRandomForest);
+            SerializationHelper.write(FileLocations.TwoHandedModelFilePath, updatedRandomForest);
         }
 
         public void AddOneHandedTrainingData()
         {
             AddNewData(true);
-            Instances instances = new Instances(
-                new BufferedReader(
-                    new FileReader(
-                        @"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SingleHandData.arff")));
+            Instances instances = new Instances(new BufferedReader(new FileReader(FileLocations.OneHandedDataFilePath)));
             instances.setClassIndex(instances.numAttributes() - 1);
             var updatedLogistic = new Logistic();
             updatedLogistic.buildClassifier(instances);
-            SerializationHelper.write(@"D:\Documents\BSL translator docs\Data mining stuff\models\updatedLogistic.model", updatedLogistic);
-
+            SerializationHelper.write(FileLocations.OneHandedModelFilePath, updatedLogistic);
         }
+
         private void AddNewData(bool oneHanded)
         {
-            var listener = new SaveDataListener() {OneHandedGesture = oneHanded};
-     
+            var listener = new SaveDataListener() { OneHandedGesture = oneHanded };
+
             var gestureList = TextBoxValues.GestureList.Split('\n');
             while (string.IsNullOrEmpty(Gesture.GestureName))
             {
@@ -76,34 +65,31 @@ namespace RandomForestTranslator
 
         public void AddTwoHandedGesture(Window window)
         {
-
-            var listener = new SaveDataListener {OneHandedGesture = false};
+            var listener = new SaveDataListener { OneHandedGesture = false };
             Thread.Sleep(500);
             if (!controller.IsConnected)
             {
-               
                 MessageBox.Show("Please connect the controller and try again");
                 window.Close();
             }
             GatherData(controller, listener);
-            string text = System.IO.File.ReadAllText(@"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SignLanguageDataUpdateable.arff");
+            string text = System.IO.File.ReadAllText(FileLocations.TwoHandedDataFilePath);
             text = text.Replace("}", "," + Gesture.GestureName + "}");
-            System.IO.File.WriteAllText(@"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SignLanguageDataUpdateable.arff", text);
+            System.IO.File.WriteAllText(FileLocations.TwoHandedDataFilePath, text);
             Instances instances = new Instances(
                new BufferedReader(
                    new FileReader(
-                       @"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SignLanguageDataUpdateable.arff")));
+                       FileLocations.TwoHandedDataFilePath)));
             instances.setClassIndex(instances.numAttributes() - 1);
             RandomForest updatedRandomForest = new RandomForest();
             updatedRandomForest.buildClassifier(instances);
-            SerializationHelper.write(@"D:\Documents\BSL translator docs\Data mining stuff\models\updatedRandomForest.model", updatedRandomForest);
-            
+            SerializationHelper.write(FileLocations.TwoHandedModelFilePath, updatedRandomForest);
         }
 
         public void AddOneHandedGesture(Window window)
         {
             var controller = new Controller();
-            var listener = new SaveDataListener {OneHandedGesture = true};
+            var listener = new SaveDataListener { OneHandedGesture = true };
             Thread.Sleep(500);
             if (!controller.IsConnected)
             {
@@ -111,20 +97,19 @@ namespace RandomForestTranslator
                 window.Close();
             }
             GatherData(controller, listener);
-            string text = System.IO.File.ReadAllText(@"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SingleHandData.arff");
+            string text = System.IO.File.ReadAllText(FileLocations.OneHandedDataFilePath);
             text = text.Replace("}", "," + Gesture.GestureName + "}");
-            System.IO.File.WriteAllText(@"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SingleHandData.arff", text);
+            System.IO.File.WriteAllText(FileLocations.OneHandedDataFilePath, text);
             Instances instances = new Instances(
                 new BufferedReader(
                     new FileReader(
-                        @"D:\Documents\BSL translator docs\Data mining stuff\DataSets\SingleHandData.arff")));
+                        FileLocations.OneHandedDataFilePath)));
             instances.setClassIndex(instances.numAttributes() - 1);
             var updatedLogistic = new Logistic();
             updatedLogistic.buildClassifier(instances);
-            SerializationHelper.write(@"D:\Documents\BSL translator docs\Data mining stuff\models\updatedLogistic.model", updatedLogistic);
+            SerializationHelper.write(FileLocations.OneHandedModelFilePath, updatedLogistic);
         }
 
-    
         private void GatherData(Controller controller, SaveDataListener listener)
         {
             while (string.IsNullOrEmpty(Gesture.GestureName))
@@ -132,7 +117,7 @@ namespace RandomForestTranslator
                 Gesture.GestureName = InputBox.ShowInputBox("please enter the name of the gesture");
             }
             MessageBox.Show("please holds gesture until the next message box.");
-            
+
             controller.FrameReady += listener.OnFrame;
             Thread.Sleep(10000);
             controller.StopConnection();

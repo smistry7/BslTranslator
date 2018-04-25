@@ -1,28 +1,28 @@
-﻿using System.ComponentModel;
+﻿using BslTranslatorWeka;
+using Leap;
+using RandomForestTranslator;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using BslTranslatorWeka;
-using Leap;
-using RandomForestTranslator;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 using MessageBox = System.Windows.MessageBox;
 
 namespace BslTranslatorGUI
 {
-
     public partial class MainWindow : System.Windows.Window
     {
-        readonly AlterModel _alterModel = new AlterModel();
+        private readonly AlterModel _alterModel = new AlterModel();
         private WekaClassifier _wekaClassifier;
         public static Controller Controller;
         private BackgroundWorker _wekaWorker;
         private BackgroundWorker _updater;
         private RuleClassifier _ruleClassifier;
+
         public delegate void UpdateTextCallback(string text);
 
         public MainWindow()
@@ -40,7 +40,6 @@ namespace BslTranslatorGUI
             _wekaWorker.DoWork += WekaWorkerDoWork;
             _updater = new BackgroundWorker();
             _updater.DoWork += TextBoxUpdater;
-
 
             _wekaWorker.WorkerSupportsCancellation = true;
             _updater.WorkerSupportsCancellation = true;
@@ -65,6 +64,7 @@ namespace BslTranslatorGUI
                 }
             }
         }
+
         private void StopCapture_Click(object sender, RoutedEventArgs e)
         {
             if (Controller != null)
@@ -75,12 +75,10 @@ namespace BslTranslatorGUI
             ConnectionLabel.Background = Brushes.Red;
         }
 
-
         private void BeginCapture_Click(object sender, RoutedEventArgs e)
         {
             Controller = new Controller();
             _ruleClassifier = new RuleClassifier(GestureText, HandCount);
-
 
             Controller.Device += _ruleClassifier.OnConnect;
             Controller.FrameReady += _ruleClassifier.OnFrame;
@@ -95,8 +93,6 @@ namespace BslTranslatorGUI
                 MessageBox.Show("Controller not connected");
                 ConnectionLabel.Background = Brushes.Red;
             }
-
-
         }
 
         private void BeginCapture2_Click(object sender, RoutedEventArgs e)
@@ -116,7 +112,6 @@ namespace BslTranslatorGUI
             if (Controller.IsConnected)
             {
                 this.Dispatcher.Invoke(() => Connection2.Background = Brushes.Green);
-
             }
             else
             {
@@ -132,13 +127,10 @@ namespace BslTranslatorGUI
             TextBoxValues.Text += TextBoxValues.SecondOption;
         }
 
-
         private void ClearText_Click(object sender, RoutedEventArgs e)
         {
             GestureText.Clear();
         }
-
-
 
         private void Space_Click(object sender, RoutedEventArgs e)
         {
@@ -155,7 +147,6 @@ namespace BslTranslatorGUI
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void GestureText2_TextChanged(object sender, TextChangedEventArgs e)
@@ -167,8 +158,6 @@ namespace BslTranslatorGUI
         {
             GestureText.ScrollToEnd();
         }
-
-
 
         private void AddGesture_Click(object sender, RoutedEventArgs e)
         {
@@ -193,7 +182,6 @@ namespace BslTranslatorGUI
             TextBoxValues.Text = "";
         }
 
-
         private void StopCapture2_Click(object sender, RoutedEventArgs e)
         {
             if (Controller != null)
@@ -205,9 +193,6 @@ namespace BslTranslatorGUI
 
             _updater.CancelAsync();
         }
-
-
-
 
         private void Space2_Click(object sender, RoutedEventArgs e)
         {
@@ -254,7 +239,5 @@ namespace BslTranslatorGUI
             }
             GestureList.Text = searchResults;
         }
-
     }
 }
-

@@ -1,18 +1,16 @@
-﻿using System;
+﻿using BslTranslator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using BslTranslator;
 
 namespace Leap
 {
-    class ConsoleListener
+    internal class ConsoleListener
     {
-        
         public static Queue<string[]> Queue = new Queue<string[]>(50);
-        readonly BslAlphabet alphabet = new BslAlphabet();
+        private readonly BslAlphabet alphabet = new BslAlphabet();
         private bool twoHands;
-  
 
         public void OnConnect(object sender, DeviceEventArgs args)
         {
@@ -75,7 +73,6 @@ namespace Leap
                     possibleGestures.Add("I");
                 }
 
-
                 LeapFrame.K = alphabet.K(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.K)
                 {
@@ -132,37 +129,32 @@ namespace Leap
                 LeapFrame.W = alphabet.W(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.W)
                 {
-
                     possibleGestures.Add("W");
                 }
                 LeapFrame.S = alphabet.S(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.S)
                 {
-
                     possibleGestures.Add("S");
                 }
                 LeapFrame.Y = alphabet.Y(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.Y)
                 {
-
                     possibleGestures.Add("Y");
                 }
                 LeapFrame.Z = alphabet.Z(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.Z)
 
                 {
-
                     possibleGestures.Add("Z");
                 }
                 LeapFrame.Q = alphabet.Q(frame.Hands[0], frame.Hands[1]);
                 if (LeapFrame.Q)
 
                 {
-
                     possibleGestures.Add("Q");
                 }
             }
-           
+
             if (frame.Hands.Count == 1)
             {
                 if (twoHands)
@@ -175,13 +167,11 @@ namespace Leap
                     LeapFrame.C = alphabet.C(frame.Hands[0]);
                     if (LeapFrame.C)
                     {
-
                         possibleGestures.Add("C");
                     }
                     LeapFrame.G = alphabet.G(frame.Hands[0]);
                     if (LeapFrame.G)
                     {
-
                         possibleGestures.Add("G");
                     }
                     if (alphabet.One(frame.Hands[0]))
@@ -227,9 +217,8 @@ namespace Leap
                 }
             }
 
-
             if (possibleGestures.Count != 0) Queue.Enqueue(possibleGestures.ToArray());
-            //find most common item in each string array in queue, add that to an array then find 
+            //find most common item in each string array in queue, add that to an array then find
             //the most common one out of those
             if (Queue.Count % 50 == 0 && Queue.Count != 0)
             {
@@ -241,10 +230,7 @@ namespace Leap
                 var ExpectedTerm = mostCommon.GroupBy(x => x).OrderBy(g => g.Key).First().Key;
                 Console.WriteLine(ExpectedTerm);
                 Queue.Clear();
-
-
             }
-            
         }
     }
 }

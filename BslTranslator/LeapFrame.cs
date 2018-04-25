@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Leap;
+﻿using Leap;
 
 namespace BslTranslator
 {
     public class LeapFrame
     {
-        BslAlphabet bslAlphabet = new BslAlphabet();
         public Frame frame { get; set; }
 
         public bool A { get; set; }
@@ -37,7 +32,5 @@ namespace BslTranslator
         public bool X { get; set; }
         public bool Y { get; set; }
         public bool Z { get; set; }
-
-
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Leap;
+using System;
 using System.Linq;
-using System.Text;
-using Leap;
 
 namespace BslTranslator
 {
@@ -24,7 +22,6 @@ namespace BslTranslator
 
         public bool ExtendedFingers(Hand hand, int[] fingerInts)
         {
-
             for (int i = 0; i <= 4; i++)
             {
                 if (fingerInts.Contains(i))
@@ -37,7 +34,6 @@ namespace BslTranslator
                 }
             }
             return true;
-
         }
 
         public float CalcAngle(Vector v1, Vector v2)

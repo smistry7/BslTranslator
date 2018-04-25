@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlterModel.cs" />
+    <Compile Include="FileLocations.cs" />
     <Compile Include="TextBoxValues.cs" />
     <Compile Include="WekaClassifier.cs" />
     <Compile Include="Program.cs" />

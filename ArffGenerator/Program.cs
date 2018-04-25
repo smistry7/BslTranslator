@@ -1,16 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Globalization;
-using System.Net.Mime;
+﻿using Leap;
+using System;
+using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using Leap;
 
 namespace ArffGenerator
 {
@@ -19,14 +12,15 @@ namespace ArffGenerator
         public static string GestureName { get; set; }
     }
 
-    class Program
+    internal class Program
     {
-        
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+           
+
             Controller controller = new Controller();
-            SaveDataListener listener = new SaveDataListener(){OneHandedGesture = true};
-            
+            SaveDataListener listener = new SaveDataListener() { OneHandedGesture = true };
+
             Console.WriteLine("Enter the name of the gesture");
             Gesture.GestureName = Console.ReadLine();
             Console.WriteLine("please hold gesture within 5 seconds");
@@ -41,5 +35,3 @@ namespace ArffGenerator
         }
     }
 }
-
-

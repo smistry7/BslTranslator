@@ -1,16 +1,14 @@
-﻿using System;
+﻿using BslTranslator;
+using Leap;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BslTranslator;
-using Leap;
 
 namespace ArffGenerator
 {
     public class WriteArffMethods
     {
-        HandDataMethods handDataMethods = new HandDataMethods();
+        private HandDataMethods handDataMethods = new HandDataMethods();
+
         public List<string> TwoHandData(Frame frame, Hand right, Hand left, string gestureName)
         {
             var handData = new List<string> { frame.Hands.Count.ToString() };
@@ -29,7 +27,7 @@ namespace ArffGenerator
 
             handData[0] += FingerBends(frame.Hands[0]);
             handData[0] += SingleFingerDistances(frame.Hands[0]);
-            handData[0] += ","+gestureName;
+            handData[0] += "," + gestureName;
             return handData;
         }
 
@@ -45,7 +43,6 @@ namespace ArffGenerator
             }
             return distance;
         }
-
 
         public string FingerDistances(Hand hand1, Hand hand2)
         {
@@ -63,23 +60,13 @@ namespace ArffGenerator
 
         public string FingerBends(Hand hand)
         {
-            string fingerBendString = "";
-            foreach (Finger finger in hand.Fingers)
-            {
-                fingerBendString += ", " + handDataMethods.FingerBend(finger);
-            }
-            return fingerBendString;
+            return hand.Fingers.Aggregate("", (current, finger) => current + (", " + handDataMethods.FingerBend(finger)));
         }
 
         public string NormalisedFingerPositions(Hand hand1, Hand hand2)
         {
-            string fingerPositions = "";
-            foreach (Finger finger in hand1.Fingers)
-            {
-                fingerPositions += "," + (finger.TipPosition.Normalized - hand2.PalmPosition.Normalized).Magnitude;
-            }
-            return fingerPositions;
+            return hand1.Fingers.Aggregate("",
+                (current, finger) => current + ("," + (finger.TipPosition.Normalized - hand2.PalmPosition.Normalized).Magnitude));
         }
-
     }
 }
