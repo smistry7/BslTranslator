@@ -1,0 +1,1 @@
+C:\Users\shyam\source\repos\BslTranslator\ArffGenerator\obj\Release\ArffGenerator.csproj.CoreCompileInputs.cache

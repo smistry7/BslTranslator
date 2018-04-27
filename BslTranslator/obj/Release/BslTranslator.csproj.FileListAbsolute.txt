@@ -1,0 +1,2 @@
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Release\BslTranslator.csprojResolveAssemblyReference.cache
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Release\BslTranslator.csproj.CoreCompileInputs.cache

@@ -16,23 +16,27 @@ namespace RandomForestTranslator
     {
         private Controller controller = new Controller();
 
-
+        //to be used by GUI when providing new training data for an existing two gesture
         public void AddTwoHandedTrainingData()
         {
+            //boolean to say it isn't a one handed gesture
             AddNewData(false);
             var instances = new Instances(new BufferedReader(new FileReader(FileLocations.TwoHandedDataFilePath)));
             instances.setClassIndex(instances.numAttributes() - 1);
-            RandomForest updatedRandomForest = new RandomForest();
+            var updatedRandomForest = new RandomForest();
             updatedRandomForest.buildClassifier(instances);
             SerializationHelper.write(FileLocations.TwoHandedModelFilePath, updatedRandomForest);
         }
+        //to be used by GUI when providing new training data for an existing one gesture
 
         public void AddOneHandedTrainingData()
         {
+            //bool indicating it is a one handed gesture
             AddNewData(true);
-            Instances instances = new Instances(new BufferedReader(new FileReader(FileLocations.OneHandedDataFilePath)));
+            var instances = new Instances(new BufferedReader(new FileReader(FileLocations.OneHandedDataFilePath)));
             instances.setClassIndex(instances.numAttributes() - 1);
             var updatedLogistic = new Logistic();
+            //train model and overwrite existing model
             updatedLogistic.buildClassifier(instances);
             SerializationHelper.write(FileLocations.OneHandedModelFilePath, updatedLogistic);
         }
@@ -46,6 +50,7 @@ namespace RandomForestTranslator
             {
                 Gesture.GestureName = InputBox.ShowInputBox("please enter the name of the gesture");
             }
+            //validation of entered gesture name
             if (!gestureList.Contains(Gesture.GestureName.ToLower()))
             {
                 MessageBox.Show(
@@ -62,7 +67,7 @@ namespace RandomForestTranslator
                 MessageBox.Show("You may now stop performing the gesture, please wait while the algorithm retrains");
             }
         }
-
+        //retrain model with new gesture
         public void AddTwoHandedGesture(Window window)
         {
             var listener = new SaveDataListener { OneHandedGesture = false };
@@ -74,15 +79,14 @@ namespace RandomForestTranslator
             }
             GatherData(controller, listener);
             string text = System.IO.File.ReadAllText(FileLocations.TwoHandedDataFilePath);
+            //add new gesture to arff class structure
             text = text.Replace("}", "," + Gesture.GestureName + "}");
             System.IO.File.WriteAllText(FileLocations.TwoHandedDataFilePath, text);
-            Instances instances = new Instances(
-               new BufferedReader(
-                   new FileReader(
-                       FileLocations.TwoHandedDataFilePath)));
+            var instances = new Instances(new BufferedReader(new FileReader(FileLocations.TwoHandedDataFilePath)));
             instances.setClassIndex(instances.numAttributes() - 1);
             RandomForest updatedRandomForest = new RandomForest();
             updatedRandomForest.buildClassifier(instances);
+            //overwrite existing model
             SerializationHelper.write(FileLocations.TwoHandedModelFilePath, updatedRandomForest);
         }
 
@@ -109,7 +113,7 @@ namespace RandomForestTranslator
             updatedLogistic.buildClassifier(instances);
             SerializationHelper.write(FileLocations.OneHandedModelFilePath, updatedLogistic);
         }
-
+        //record data from user
         private void GatherData(Controller controller, SaveDataListener listener)
         {
             while (string.IsNullOrEmpty(Gesture.GestureName))

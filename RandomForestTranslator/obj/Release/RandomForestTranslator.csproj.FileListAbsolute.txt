@@ -1,0 +1,2 @@
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Release\RandomForestTranslator.csprojResolveAssemblyReference.cache
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Release\RandomForestTranslator.csproj.CoreCompileInputs.cache

@@ -185,8 +185,10 @@ namespace BslTranslatorWeka
             }
             if (MostProbable.Count % 10 == 0 && MostProbable.Count != 0)
             {
+                //Output the most frequent element that occurs in the array once it reaches a size of 10
                 var listOccurances = CreateDictionary(MostProbable);
                 var gesture = (from x in listOccurances where x.Value == listOccurances.Max(v => v.Value) select x.Key).ToList();
+                //Add a space if the gesture is longer than 1 letter
                 if (gesture[0].Length > 1)
                 {
                     TextBoxValues.Text += gesture[0] + " ";

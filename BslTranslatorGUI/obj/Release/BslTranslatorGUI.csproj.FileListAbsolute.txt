@@ -1,0 +1,5 @@
+C:\Users\shyam\source\repos\BslTranslator\BslTranslatorGUI\obj\Release\BslTranslatorGUI.csprojResolveAssemblyReference.cache
+C:\Users\shyam\source\repos\BslTranslator\BslTranslatorGUI\obj\Release\MainWindow.g.cs
+C:\Users\shyam\source\repos\BslTranslator\BslTranslatorGUI\obj\Release\App.g.cs
+C:\Users\shyam\source\repos\BslTranslator\BslTranslatorGUI\obj\Release\BslTranslatorGUI_MarkupCompile.cache
+C:\Users\shyam\source\repos\BslTranslator\BslTranslatorGUI\obj\Release\BslTranslatorGUI_MarkupCompile.lref
