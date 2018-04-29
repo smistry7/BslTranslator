@@ -31,7 +31,7 @@ namespace BslTranslatorGUI
         {
             // Get the most recent frame and report some basic information
 
-            Frame frame = args.frame;
+            var frame = args.frame;
             try
             {
                 HandCount.Text = frame.Hands.Count.ToString();
@@ -40,8 +40,8 @@ namespace BslTranslatorGUI
             {
                 return;
             }
-            List<string> possibleGestures = new List<string>();
-            LeapFrame leapFrame = new LeapFrame();
+            var possibleGestures = new List<string>();
+            var leapFrame = new LeapFrame();
             if (frame.Hands.Count == 2)
             {
                 TwoHands = true;
@@ -183,8 +183,8 @@ namespace BslTranslatorGUI
             if (possibleGestures.Count != 0) queue.Enqueue(possibleGestures.ToArray());
             //find most common item in each string array in queue, add that to an array then find
             //the most common one out of those
-            if (queue.Count % 50 != 0 || queue.Count == 0) return;
-            List<string> mostCommon = new List<string>();
+            if (queue.Count % 75 != 0 || queue.Count == 0) return;
+            var mostCommon = new List<string>();
             foreach (var stringArr in queue)
             {
                 foreach (string a in stringArr) mostCommon.Add(a);

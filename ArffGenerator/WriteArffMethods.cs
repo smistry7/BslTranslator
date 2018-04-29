@@ -8,7 +8,11 @@ namespace ArffGenerator
     public class WriteArffMethods
     {
         private HandDataMethods handDataMethods = new HandDataMethods();
-
+        /// <summary>
+        /// return angle of fingers, finger posistions and distances from other fingers as a single string 
+        /// to be added to the arff file as an instance
+        /// </summary>
+  
         public List<string> TwoHandData(Frame frame, Hand right, Hand left, string gestureName)
         {
             var handData = new List<string> { frame.Hands.Count.ToString() };

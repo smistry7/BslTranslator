@@ -6,11 +6,12 @@ namespace BslTranslator
 {
     public class HandDataMethods
     {
+        //bool that returns whether or not the distance between 2 vectors is within a given distance
         public bool AreWithin(Vector finger1, Vector finger2, int distance)
         {
             return (finger1 - finger2).Magnitude < distance;
         }
-
+        //angle between the proximal and distal bones in a finger
         public float FingerBend(Finger finger)
         {
             Bone proximal = finger.Bone(Bone.BoneType.TYPE_PROXIMAL);
@@ -19,7 +20,7 @@ namespace BslTranslator
             float flexed = 1.0f - (1.0f + dot) / 2.0f;
             return flexed;
         }
-
+        //returns true if the ints in the array representing fingers are extended and the ones not in the array are not
         public bool ExtendedFingers(Hand hand, int[] fingerInts)
         {
             for (int i = 0; i <= 4; i++)
@@ -35,7 +36,7 @@ namespace BslTranslator
             }
             return true;
         }
-
+        //angle between any 2 vectors
         public float CalcAngle(Vector v1, Vector v2)
         {
             var dotProduct = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;

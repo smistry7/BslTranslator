@@ -1,2 +1,16 @@
-C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Release\BslTranslator.csprojResolveAssemblyReference.cache
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\BslTranslator.exe
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\BslTranslator.pdb
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\FluentAssertions.Core.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\FluentAssertions.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\InputBox.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\LeapCSharp.NET4.5.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\nunit.framework.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\FluentAssertions.pdb
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\FluentAssertions.xml
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\FluentAssertions.Core.pdb
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\FluentAssertions.Core.xml
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\InputBox.pdb
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Release\nunit.framework.xml
 C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Release\BslTranslator.csproj.CoreCompileInputs.cache
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Release\BslTranslator.exe
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Release\BslTranslator.pdb

@@ -7,6 +7,8 @@ namespace Leap
     public class BslAlphabet
     {
         private HandDataMethods handDataMethods = new HandDataMethods();
+        //boolean statements for each of the sign language gestures based on the API information in the frame
+        //using hand data methods logic
 
         public bool A(Hand left, Hand right)
         {
@@ -158,16 +160,7 @@ namespace Leap
                        && handDataMethods.FingerBend(left.Fingers[0]) < 0.154);
         }
 
-        //doesn't work
-        //        public bool R(Hand left, Hand right)
-        //        {
-        //            return (handDataMethods.ExtendedFingers(left, new[] { 0, 1, 2, 3, 4 }) && right.Fingers[1].IsExtended
-        //                   && handDataMethods.AreWithin(right.Fingers[1].TipPosition,
-        //                       left.Fingers[0].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint, 50))
-        //                       || (handDataMethods.ExtendedFingers(right, new[] { 0, 1, 2, 3, 4 }) && left.Fingers[1].IsExtended
-        //                           && handDataMethods.AreWithin(left.Fingers[1].TipPosition,
-        //                               right.Fingers[0].Bone(Bone.BoneType.TYPE_METACARPAL).PrevJoint, 50));
-        //        }
+        
         public bool S(Hand left, Hand right)
         {
             return handDataMethods.ExtendedFingers(right, new[] { 4 }) && handDataMethods.ExtendedFingers(left, new[] { 4 });

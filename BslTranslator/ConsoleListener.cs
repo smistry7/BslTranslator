@@ -22,6 +22,7 @@ namespace Leap
             var frame = args.frame;
             var possibleGestures = new List<string>();
             var LeapFrame = new LeapFrame();
+            //if the frame returns true for any boolean in the LeapFrame class, add to the corresponding text possible gestures list
             if (frame.Hands.Count == 2)
             {
                 twoHands = true;

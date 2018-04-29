@@ -1,8 +1,6 @@
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\RandomForestTranslator.exe.config
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\RandomForestTranslator.exe
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\RandomForestTranslator.pdb
-C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\IKVM.OpenJDK.Core.dll
-C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\LeapCSharp.NET4.5.dll
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\weka.dll
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\IKVM.Runtime.dll
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\IKVM.OpenJDK.Util.dll
@@ -23,7 +21,6 @@ C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\Rando
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\RandomForestTranslator.csproj.CoreCompileInputs.cache
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\RandomForestTranslator.exe
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\RandomForestTranslator.pdb
-C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.dll
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.pdb
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.xml
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\ArffGenerator.exe
@@ -34,3 +31,6 @@ C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\ArffG
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\BslTranslator.pdb
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\InputBox.pdb
 C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\obj\Debug\RandomForestTranslator.exe.config
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\IKVM.OpenJDK.Core.dll
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\LeapCSharp.NET4.5.dll
+C:\Users\shyam\source\repos\BslTranslator\RandomForestTranslator\bin\Debug\nunit.framework.dll

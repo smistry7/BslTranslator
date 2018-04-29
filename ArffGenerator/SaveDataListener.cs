@@ -18,6 +18,7 @@ namespace ArffGenerator
                                 + @"\DataSets\SignLanguageDataUpdateable.arff";
 
         }
+        //add information to relevant arff file based on number of hands required for gesture.
         public void OnFrame(object sender, FrameEventArgs args)
         {
             Frame frame = args.frame;

@@ -27,7 +27,7 @@ namespace RandomForestTranslator
             OneHandedGestures =
             (Logistic)SerializationHelper.read(@"D:\Documents\BSL translator docs\Data mining stuff\models\SingleHandLogistic.model");
         }
-
+        //use random forest to classify test data and produce an accuracy percentage 
         [Test]
         public void TwoHandRandomForestTest()
         {
@@ -54,7 +54,7 @@ namespace RandomForestTranslator
             Console.WriteLine("Accuracy: " + accuracy + " Average Error Prediction: " + averageErrorPrediction);
             Assert.Greater(accuracy, 0.75);
         }
-
+        //use logistic regression model to classify test data and produce accuracy percentage
         [Test]
         public void OneHandLogisticTest()
         {

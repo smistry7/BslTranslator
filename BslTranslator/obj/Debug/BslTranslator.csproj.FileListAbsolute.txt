@@ -33,3 +33,5 @@ C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Debug\BslTranslator.
 C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Debug\BslTranslator.pdb
 C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\InputBox.dll
 C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\InputBox.pdb
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\bin\Debug\LeapCSharp.NET4.5.dll
+C:\Users\shyam\source\repos\BslTranslator\BslTranslator\obj\Debug\BslTranslator.csprojResolveAssemblyReference.cache
